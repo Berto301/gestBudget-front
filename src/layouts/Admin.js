@@ -1,6 +1,6 @@
 
 import React from "react";
-import { useLocation, Route, Switch, Redirect } from "react-router-dom";
+import { useLocation, Route, Switch } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
 // core components
@@ -66,7 +66,6 @@ const Admin = (props) => {
         />
         <Switch>
           {getRoutes(routes)}
-          <Redirect from="*" to="/admin/index" />
         </Switch>
         <Container fluid>
           <AdminFooter />
