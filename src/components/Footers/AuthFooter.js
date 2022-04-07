@@ -4,7 +4,7 @@
 // reactstrap components
 import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
 
-const Login = () => {
+const AuthFooter = () => {
   return (
     <>
       <footer className="py-5">
@@ -29,4 +29,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AuthFooter;
