@@ -3,8 +3,8 @@ import {
   Container,
 } from "reactstrap";
 import Header from "../../../../components/Headers/HeaderBase";
-import Items from "./items";
-import GraphSales from './Graph'
+// import Items from "./items";
+// import GraphSales from './Graph'
 
 const Index = () => {
   return (
@@ -15,9 +15,9 @@ const Index = () => {
         />
         <Container className="content-global" fluid>
          
-          <GraphSales />
+          {/*<GraphSales />*/}
           <div className="content_sales">
-            <Items/>
+            {/*<Items/>*/}
           </div>
           
         </Container>

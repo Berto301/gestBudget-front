@@ -6,8 +6,8 @@ import SalesSociety from "views/pages/sales/society";
 import RecipeGroup from "views/pages/recipe/group/container";
 import RecipeSociety from "views/pages/recipe/society";
 import Profile from "views/pages/profile"
-import Login from "views/connexion/Login"
-import Register from "views/connexion/Register"
+import Login from "views/connexion/login"
+import Register from "views/connexion/register"
 var routes = [
   
   {
