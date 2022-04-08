@@ -1,5 +1,5 @@
 
-import React from "react";
+import React , {useEffect} from "react";
 import { useLocation, Route, Switch } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
@@ -8,20 +8,22 @@ import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 
-import routes from "../routes/main.js";
+import {societyRoutes,routes} from "../routes/main.js";
 
 const Admin = (props) => {
   const mainContent = React.useRef(null);
   const location = useLocation();
-
-  React.useEffect(() => {
+  const actualRoutes = societyRoutes || []
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainContent.current.scrollTop = 0;
   }, [location]);
 
-  const getRoutes = (routes) => {
-    return routes.map((prop, key) => {
+
+
+  const getRoutes = (actualRoutes) => {
+    return actualRoutes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
           <Route
@@ -37,12 +39,12 @@ const Admin = (props) => {
   };
 
   const getBrandText = (path) => {
-    for (let i = 0; i < routes.length; i++) {
+    for (let i = 0; i < actualRoutes.length; i++) {
       if (
-        props.location.pathname.indexOf(routes[i].layout + routes[i].path) !==
+        props.location.pathname.indexOf(actualRoutes[i].layout + actualRoutes[i].path) !==
         -1
       ) {
-        return routes[i].name;
+        return actualRoutes[i].name;
       }
     }
     return "Brand";
@@ -52,7 +54,7 @@ const Admin = (props) => {
     <>
       <Sidebar
         {...props}
-        routes={routes}
+        routes={actualRoutes}
         logo={{
           innerLink: "/admin/index",
           imgSrc: require("../assets/img/brand/argon-react.png").default,
@@ -65,7 +67,7 @@ const Admin = (props) => {
           brandText={getBrandText(props.location.pathname)}
         />
         <Switch>
-          {getRoutes(routes)}
+          {getRoutes(actualRoutes)}
         </Switch>
         <Container fluid>
           <AdminFooter />

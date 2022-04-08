@@ -1,0 +1,45 @@
+.content-global{
+    min-width: 100vh;
+    min-height: 90vh;
+}
+.color_white{
+    color: white !important;
+}
+.content-header-dashboard{
+    min-height: 40px;
+    .status{
+        .success{
+            width: 10px;
+            height: 10px;
+            background-color: darkgreen;
+            border-radius: 50%;
+        }
+        .grey{
+            width: 10px;
+            height: 10px;
+            background-color: #E0E1E1;;
+            border-radius: 50%;
+        }
+        .danger{
+            width: 10px;
+            height: 10px;
+            background-color: darkred;
+            border-radius: 50%;
+        }
+        .mr-2{
+            margin-right: 2px;
+        }
+    }
+}
+.bg-grey{
+    background-color: #E0E1E1;
+}
+.dark-color{
+    color: black;
+}
+.bg-transparent{
+    background: transparent !important;
+}
+.mb-2{
+    margin-bottom: 10px !important;
+}

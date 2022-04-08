@@ -1,17 +1,26 @@
-
-
 // reactstrap components
-import { Card, CardBody, CardTitle, Container, Row, Col,
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  Container,
+  Row,
+  Col,
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
-  DropdownToggle} from "reactstrap";
+  DropdownToggle,
+} from "reactstrap";
+import Header from "../../../../components/Headers/HeaderBase";
 
-const Header = () => {
+const Index = () => {
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
-        <Container fluid>
+        <Header
+          parentClass="pb-2 pt-2"
+        />
+        <Container className="content-global" fluid>
           <div className="header-body">
             {/* Card stats */}
             <Row>
@@ -58,7 +67,6 @@ const Header = () => {
                             >
                               Delete
                             </DropdownItem>
-                            
                           </DropdownMenu>
                         </UncontrolledDropdown>
                       </Col>
@@ -115,7 +123,6 @@ const Header = () => {
                             >
                               Delete
                             </DropdownItem>
-                            
                           </DropdownMenu>
                         </UncontrolledDropdown>
                       </Col>
@@ -137,4 +144,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Index;

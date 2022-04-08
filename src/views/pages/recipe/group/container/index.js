@@ -6,7 +6,7 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import Header from "../../../../components/Headers/HeaderBase.js";
+import Header from "../../../../../components/Headers/HeaderBase";
 import HeadTable from "../subComponents/HeadTable.js";
 import Items from "./items.js";
 
