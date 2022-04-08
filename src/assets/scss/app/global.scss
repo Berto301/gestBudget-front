@@ -43,3 +43,43 @@
 .mb-2{
     margin-bottom: 10px !important;
 }
+
+.content_sales{
+    width: 100%;
+    margin-top: 3rem;
+    .items_sales{
+        .icones_sales{
+            margin: 10px;
+        }
+        .content-tile{
+            margin-top: 15px;
+            .sales_title{
+                font-size: 30px;
+                line-height: 11px;
+                color: white;
+            }
+            .content_value{
+                font-size: 20px;
+                line-height: 11px;
+                color: #172b4d;
+                margin-top: 20px;
+            }
+        }
+
+        .sales_value{
+            font-size: 25px;
+            color: #172b4d;
+            line-height: 11px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+        
+    }
+}
+.content-graph{
+    margin-top: 20px;
+    canvas {
+        max-width: 628px;
+        max-height: 314px;
+    }
+}
