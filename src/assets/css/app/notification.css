@@ -1,0 +1,376 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+@media (max-width: 310px) {
+  .calloutMessage--success, .calloutMessage--error, .calloutMessage--info {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+  }
+  .calloutMessage--success .notification_mobile, .calloutMessage--error .notification_mobile, .calloutMessage--info .notification_mobile {
+    display: block;
+  }
+  .calloutMessage--success .notification_desktop, .calloutMessage--error .notification_desktop, .calloutMessage--info .notification_desktop {
+    display: none;
+  }
+}
+@media (min-width: 320px) {
+  .calloutMessage--success, .calloutMessage--error, .calloutMessage--info {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+  }
+  .calloutMessage--success .notification_mobile, .calloutMessage--error .notification_mobile, .calloutMessage--info .notification_mobile {
+    display: block;
+  }
+  .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__progress-bar, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__progress-bar, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__progress-bar {
+    width: 50%;
+  }
+  .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body {
+    width: 100%;
+  }
+  .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-success, .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-error, .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--info, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-success, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-error, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--info, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-success, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-error, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--info {
+    width: 50%;
+  }
+  .calloutMessage--success .notification_desktop, .calloutMessage--error .notification_desktop, .calloutMessage--info .notification_desktop {
+    display: none;
+  }
+}
+@media (min-width: 425px) {
+  .calloutMessage--success, .calloutMessage--error, .calloutMessage--info {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+  }
+  .calloutMessage--success .notification_mobile, .calloutMessage--error .notification_mobile, .calloutMessage--info .notification_mobile {
+    display: block;
+  }
+  .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__progress-bar, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__progress-bar, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__progress-bar {
+    width: 60%;
+  }
+  .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body {
+    width: 100%;
+  }
+  .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-success, .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-error, .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--info, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-success, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-error, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--info, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-success, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-error, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--info {
+    width: 60%;
+  }
+  .calloutMessage--success .notification_desktop, .calloutMessage--error .notification_desktop, .calloutMessage--info .notification_desktop {
+    display: none;
+  }
+}
+@media (min-width: 480px) {
+  .calloutMessage--success, .calloutMessage--error, .calloutMessage--info {
+    /* smartphones, Android phones, landscape iPhone */
+  }
+  .calloutMessage--success .notification_mobile, .calloutMessage--error .notification_mobile, .calloutMessage--info .notification_mobile {
+    display: block;
+  }
+  .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__progress-bar, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__progress-bar, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__progress-bar {
+    width: 60%;
+    left: 220px !important;
+  }
+  .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body {
+    width: 100%;
+  }
+  .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-success, .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-error, .calloutMessage--success .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--info, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-success, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-error, .calloutMessage--error .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--info, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-success, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .content-standard-notification-error, .calloutMessage--info .notification_mobile .Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--info {
+    width: 60%;
+    margin-left: 205px;
+  }
+  .calloutMessage--success .notification_desktop, .calloutMessage--error .notification_desktop, .calloutMessage--info .notification_desktop {
+    display: none;
+  }
+}
+@media (min-width: 599px) {
+  .calloutMessage--success, .calloutMessage--error, .calloutMessage--info {
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+  }
+  .calloutMessage--success .notification_mobile, .calloutMessage--error .notification_mobile, .calloutMessage--info .notification_mobile {
+    display: block;
+  }
+  .calloutMessage--success .notification_desktop, .calloutMessage--error .notification_desktop, .calloutMessage--info .notification_desktop {
+    display: none;
+  }
+}
+@media (min-width: 801px) {
+  .calloutMessage--success, .calloutMessage--error, .calloutMessage--info {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
+  }
+  .calloutMessage--success .notification_mobile, .calloutMessage--error .notification_mobile, .calloutMessage--info .notification_mobile {
+    display: none;
+  }
+  .calloutMessage--success .notification_desktop, .calloutMessage--error .notification_desktop, .calloutMessage--info .notification_desktop {
+    display: block;
+  }
+}
+@media (min-width: 1025px) {
+  .calloutMessage--success, .calloutMessage--error, .calloutMessage--info {
+    /* big landscape tablets, laptops, and desktops */
+  }
+  .calloutMessage--success .notification_mobile, .calloutMessage--error .notification_mobile, .calloutMessage--info .notification_mobile {
+    display: none;
+  }
+  .calloutMessage--success .notification_desktop, .calloutMessage--error .notification_desktop, .calloutMessage--info .notification_desktop {
+    display: block;
+  }
+}
+@media (min-width: 1281px) {
+  .calloutMessage--success, .calloutMessage--error, .calloutMessage--info {
+    /* hi-res laptops and desktops */
+  }
+  .calloutMessage--success .notification_mobile, .calloutMessage--error .notification_mobile, .calloutMessage--info .notification_mobile {
+    display: none;
+  }
+  .calloutMessage--success .notification_desktop, .calloutMessage--error .notification_desktop, .calloutMessage--info .notification_desktop {
+    display: block;
+  }
+}
+
+.Toastify .Toastify__toast-container {
+  width: 700px;
+  height: 77px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast--info {
+  border: transparent;
+  background: transparent;
+}
+.Toastify .Toastify__toast-container .Toastify__progress-bar {
+  position: absolute;
+  bottom: 15px;
+  left: 70px;
+  width: 90%;
+  height: 8px;
+  z-index: var(--toastify-z-index);
+  opacity: 0.7 !important;
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  background-color: transparent;
+  border-radius: 6px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body {
+  width: 100%;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .Toastify__toast-icon {
+  display: none;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_desktop .content-standard-notification-success {
+  width: 587px;
+  height: 120px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  border: 1px solid #45bf55;
+  background-color: #d8f5dc;
+  margin-left: 55px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_desktop .content-standard-notification-success .border-right-success {
+  background-color: #45bf55;
+  width: 7px;
+  height: 100%;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_desktop .content-standard-notification-success .content-notification {
+  margin: 26px;
+  width: 526px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_desktop .content-standard-notification-success .content-notification .info-img {
+  margin-top: 10px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_desktop .content-standard-notification-success .content-notification .info-img svg {
+  width: 27px;
+  height: 27px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_desktop .content-standard-notification-success .content-notification .content-message {
+  width: 100%;
+  color: #427059;
+  margin-top: 10px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_desktop .content-standard-notification-success .content-notification .content-message .content-between {
+  width: 90%;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_desktop .content-standard-notification-success .content-notification .content-message .content-between .custom-message-normale {
+  font-size: 15px;
+  margin-top: 5px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_desktop .content-standard-notification-success .content-notification .content-message .content-between .custom-message-too-long {
+  font-size: 15px;
+  margin-top: -5px;
+  max-width: 412px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_desktop .content-standard-notification-success .content-notification .content-message .content-between .info-img {
+  margin-top: -10px;
+  position: relative;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_desktop .content-standard-notification-success .content-notification .content-message .content-between .info-img svg {
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: -20px;
+  left: -10px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_mobile .content-standard-notification-success {
+  border-radius: 6px;
+  border: 1px solid #45bf55;
+  background-color: #d8f5dc;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_mobile .content-standard-notification-success .border-right-error {
+  background-color: #45bf55;
+  width: 7px;
+  height: 100%;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_mobile .content-standard-notification-success .content-notification {
+  margin: 26px;
+  width: 526px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_mobile .content-standard-notification-success .content-notification .info-img {
+  margin-top: 0px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_mobile .content-standard-notification-success .content-notification .info-img svg {
+  width: 15px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_mobile .content-standard-notification-success .content-notification .content-message {
+  width: 100%;
+  color: #427059;
+  margin-top: 0px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_mobile .content-standard-notification-success .content-notification .content-message .content-between {
+  width: 90%;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_mobile .content-standard-notification-success .content-notification .content-message .content-between .custom-message-normale {
+  font-size: 10px;
+  margin-top: 5px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_mobile .content-standard-notification-success .content-notification .content-message .content-between .custom-message-too-long {
+  font-size: 10px;
+  margin-top: -5px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_mobile .content-standard-notification-success .content-notification .content-message .content-between .info-img {
+  margin-top: -10px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .notification_mobile .content-standard-notification-success .content-notification .content-message .content-between .info-img svg {
+  width: 20px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--success .progress-bar-success {
+  position: absolute;
+  bottom: 15px;
+  left: 70px;
+  height: 8px;
+  z-index: var(--toastify-z-index);
+  opacity: 0.7 !important;
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  background-color: #45bf55;
+  border-radius: 6px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_desktop .content-standard-notification-error {
+  width: 587px;
+  height: 120px;
+  border: 1px solid #cc3638;
+  border-radius: 6px;
+  background-color: #fdeae8;
+  margin-left: 55px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_desktop .content-standard-notification-error .border-right-error {
+  background-color: #ff7868;
+  width: 7px;
+  height: 100%;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_desktop .content-standard-notification-error .content-notification {
+  margin: 26px;
+  width: 526px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_desktop .content-standard-notification-error .content-notification .info-img {
+  margin-top: 10px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_desktop .content-standard-notification-error .content-notification .info-img svg {
+  width: 27px;
+  height: 27px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_desktop .content-standard-notification-error .content-notification .content-message {
+  width: 100%;
+  color: #f60a20;
+  margin-top: 10px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_desktop .content-standard-notification-error .content-notification .content-message .content-between {
+  width: 90%;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_desktop .content-standard-notification-error .content-notification .content-message .content-between .custom-message-normale {
+  font-size: 15px;
+  margin-top: 5px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_desktop .content-standard-notification-error .content-notification .content-message .content-between .custom-message-too-long {
+  font-size: 15px;
+  margin-top: -5px;
+  max-width: 412px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_desktop .content-standard-notification-error .content-notification .content-message .content-between .info-img {
+  margin-top: -10px;
+  position: relative;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_desktop .content-standard-notification-error .content-notification .content-message .content-between .info-img svg {
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: -20px;
+  left: -10px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_mobile .content-standard-notification-error {
+  border: 1px solid #cc3638;
+  border-radius: 6px;
+  background-color: #fdeae8;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_mobile .content-standard-notification-error .border-right-error {
+  background-color: #ff7868;
+  width: 7px;
+  height: 100%;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_mobile .content-standard-notification-error .content-notification {
+  margin: 26px;
+  width: 526px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_mobile .content-standard-notification-error .content-notification .info-img {
+  margin-top: 0px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_mobile .content-standard-notification-error .content-notification .info-img svg {
+  width: 15px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_mobile .content-standard-notification-error .content-notification .content-message {
+  width: 100%;
+  color: #f60a20;
+  margin-top: 0px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_mobile .content-standard-notification-error .content-notification .content-message .content-between {
+  width: 90%;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_mobile .content-standard-notification-error .content-notification .content-message .content-between .custom-message-normale {
+  font-size: 10px;
+  margin-top: 5px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_mobile .content-standard-notification-error .content-notification .content-message .content-between .custom-message-too-long {
+  font-size: 10px;
+  margin-top: -5px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_mobile .content-standard-notification-error .content-notification .content-message .content-between .info-img {
+  margin-top: -10px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .notification_mobile .content-standard-notification-error .content-notification .content-message .content-between .info-img svg {
+  width: 20px;
+}
+.Toastify .Toastify__toast-container .Toastify__toast-body .calloutMessage--error .progress-bar-error {
+  position: absolute;
+  bottom: 15px;
+  left: 70px;
+  height: 8px;
+  z-index: var(--toastify-z-index);
+  opacity: 0.7 !important;
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  background-color: #cc3638;
+  border-radius: 6px;
+}
+.Toastify .Toastify__close-button > svg {
+  display: none !important;
+}
+.Toastify .Toastify__toast {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/*# sourceMappingURL=notification.css.map */

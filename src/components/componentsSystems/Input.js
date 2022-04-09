@@ -1,21 +1,29 @@
-import {useState} from'react'
+import {useState,useEffect} from'react'
 import {
   FormGroup,
   Input,
 } from "reactstrap";
 
-const InputSystem = ({name,label,passData,type}) => {
+const InputSystem = ({name,label,passData,type,value:valueProps}) => {
   const [value,setValue]=useState("")
   const onChange = (e)=>{
     e.preventDefault()
     const {value} = e.target
     setValue(value)
-  }
-  const onBlur = (e)=>{
     passData({[name]:value})
   }
+  useEffect(()=>{
+    if(valueProps){
+      setValue(valueProps)
+    }
+  },[valueProps])
+  // const onBlur = (e)=>{
+  //   passData({[name]:value})
+  // }
+
+
   return (
-    <FormGroup  onMouseLeave={onBlur}>
+    <FormGroup>
       <label
         className="form-control-label"
         htmlFor={`input-last-${name}`}
@@ -28,10 +36,11 @@ const InputSystem = ({name,label,passData,type}) => {
         placeholder={label}
         type={type}
         name={name}
-        onBlur={onBlur}
+        //onBlur={onBlur}
         onChange={onChange}
         value={value}
-
+        //onMouseLeave={onBlur}
+        autoComplete="new-text"
       />    
     </FormGroup>
 

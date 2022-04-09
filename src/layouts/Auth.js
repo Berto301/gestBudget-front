@@ -1,5 +1,5 @@
-
-import React from "react";
+/*eslint react-hooks/exhaustive-deps:off*/
+import React , {useEffect} from "react";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container, Row, Col } from "reactstrap";
@@ -7,20 +7,51 @@ import { Container, Row, Col } from "reactstrap";
 // core components
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
-
+import StandardNotification from "components/Warnings/standardNotification";
 import {authRoutes} from "../routes/main.js";
 
+import { useDispatch,useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Auth = (props) => {
+  const reduxDispatch = useDispatch();
+  let standardNotification = useSelector((state) => state.standardNotification);
   const mainContent = React.useRef(null);
   const location = useLocation();
+  useEffect(()=>{
+    // Needde on unmount 
+    return () => reduxDispatch({
+      type:"STANDARD_NOTIFICATION",
+      payload:null
+    })
+  },[])
+  
 
-  React.useEffect(() => {
+  /*function to active notification*/
+  const toastStandardNotification = (message, type) => {
+    toast.info(<StandardNotification type={type} message={message} />, {
+      hideProgressBar: true,
+      autoClose: 10000,
+      draggable: false,
+    });
+  };
+  useEffect(() => {
+    if (standardNotification) {
+      toastStandardNotification(
+        standardNotification?.message,
+        standardNotification?.type
+      );
+    }
+  }, [standardNotification]);
+
+  useEffect(() => {
     document.body.classList.add("bg-default");
     return () => {
       document.body.classList.remove("bg-default");
     };
   }, []);
-  React.useEffect(() => {
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainContent.current.scrollTop = 0;
@@ -46,6 +77,7 @@ const Auth = (props) => {
     <>
       <div className="main-content" ref={mainContent}>
         <AuthNavbar />
+      <ToastContainer pauseOnHover />
         <div className="header bg-gradient-info py-7 py-lg-8">
           <Container>
             <div className="header-body text-center mb-7">

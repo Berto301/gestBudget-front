@@ -7,18 +7,19 @@ import {
   InputGroupText
 } from "reactstrap";
 
-const InputGroupSystem = ({name,label,passData,autoComplete,icon}) => {
+const InputGroupSystem = ({name,label,passData,autoComplete,icon,type}) => {
   const [value,setValue]=useState("")
   const onChange = (e)=>{
     e.preventDefault()
     const {value} = e.target
     setValue(value)
+    passData({[name]:value}) // It's not the best way : rendering page on changing but for the moment we need that
   }
-  const onBlur = (e)=>{
-    passData({[name]:value})
-  }
+  // const onBlur = (e)=>{
+  //   passData({[name]:value})
+  // }
   return (
-    <FormGroup onMouseLeave={onBlur}>
+    <FormGroup >
       <label
         className="form-control-label"
         htmlFor={`input-last-${name}`}
@@ -35,12 +36,13 @@ const InputGroupSystem = ({name,label,passData,autoComplete,icon}) => {
         className="form-control-alternative"
         id={`input-last-${name}`}
         placeholder={label}
-        type="text"
+        type={type}
         name={name}
-        onBlur={onBlur}
+        //onBlur={onBlur}
         onChange={onChange}
         value={value}
         autoComplete={autoComplete}
+       // onMouseLeave={onBlur} // I'd like to passData onMouseLeave but It doesn't work , it's the best way for performing application 
       />  
       </InputGroup> 
     </FormGroup>

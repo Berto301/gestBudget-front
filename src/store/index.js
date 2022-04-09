@@ -2,7 +2,8 @@ import { createStore } from "redux";
 
 const initialState = {
   // initialState
-  selectedValue:{}
+  selectedValue:{},
+  standardNotification:null
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,6 +11,10 @@ const reducer = (state = initialState, action) => {
     case "SELECTED_VALUE":
       return Object.assign({}, state, {
         selectedValue: action.payload,
+      });
+    case "STANDARD_NOTIFICATION":
+      return Object.assign({}, state, {
+        standardNotification: action.payload,
       });
     default:
       return state;

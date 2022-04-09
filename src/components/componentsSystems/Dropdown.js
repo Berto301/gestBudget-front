@@ -1,13 +1,12 @@
-import {useState} from'react'
 import {
   FormGroup,
   Input,
 } from "reactstrap";
 
 const DropdownSystem = ({name,label,lists,passData}) => {
-  const handleChange = (item)=>{
-     passData({[name]:item})
-     
+  const handleChange = (e)=>{
+    const {value} = e.target
+     passData({[name]:value})
     // reduxDispatch({
     //   type:"SELECTED_VALUE",
     //   payload:{name:item}
@@ -24,10 +23,12 @@ const DropdownSystem = ({name,label,lists,passData}) => {
           id="exampleSelect"
           name={name}
           type="select"
+          onChange={handleChange}
+          defaultValue={lists?.[0] || ""}
         >
           {lists?.length ?
               lists?.map((item,index)=>{
-                return<option className="text-center" onChange={()=>handleChange(item)}>{item}</option>
+                return<option className="text-center" >{item}</option>
               }) :<option className="text-center">No item</option>
           }
         </Input>
