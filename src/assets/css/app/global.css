@@ -52,6 +52,10 @@
   margin-right: 5px !important;
 }
 
+.mr-3 {
+  margin-right: 10px !important;
+}
+
 .content_sales {
   width: 100%;
   margin-top: 3rem;
@@ -94,6 +98,11 @@
 }
 .content-profile .content-info {
   margin-top: 120px;
+}
+
+.avatar_society {
+  background-color: transparent !important;
+  align-items: unset;
 }
 
 /*# sourceMappingURL=global.css.map */

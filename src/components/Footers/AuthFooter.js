@@ -1,6 +1,6 @@
 
 /*eslint-disable*/
-
+import {memo} from 'react'
 // reactstrap components
 import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
 
@@ -9,7 +9,7 @@ const AuthFooter = () => {
     <>
       <footer className="py-5">
         <Container>
-          <Row className="align-items-center justify-content-xl-between">
+          <Row className="align-items-center justify-content-center">
             <Col xl="12">
               <div className="copyright text-center text-xl-left text-muted">
                 © {new Date().getFullYear()}{" "}
@@ -29,4 +29,4 @@ const AuthFooter = () => {
   );
 };
 
-export default AuthFooter;
+export default memo(AuthFooter);

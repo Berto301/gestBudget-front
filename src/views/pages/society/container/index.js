@@ -1,4 +1,4 @@
-
+import {useState,useEffect} from 'react'
 // reactstrap components
 import {
   Card,
@@ -9,12 +9,147 @@ import {
 import Header from "../../../../components/Headers/HeaderBase.js";
 import HeadTable from "../subComponents/HeadTable.js";
 import Items from "./items.js";
+import {useNotification,useUser,useSociety} from '../../../../hooks/'
+import AddSociety from './addSociety'
+import { STRONG_PASSWORD_REGEX } from "../../../../_helpers/_constants";
 
-const Tables = () => {
+
+
+const Index = () => {
+  const {showError,showSuccess} = useNotification()
+  const {register,setCloseModal,closeModal}= useUser()
+  const {getByGroupId,societyLists} = useSociety()
+  const [data, setData] = useState({
+    name: "",
+    firstname: "",
+    phone: "",
+    email: "",
+    password: "",
+    nameSociety: "",
+    type: "",
+    phoneSociety: "",
+    emailSociety: "",
+    creationDate: "",
+    lawerForm:"",
+    managementStyle:"",
+    accountBank:"",
+    bank:"",
+    immatriculation:"",
+    structure:"",
+    turnover:""
+  });
+
+  useEffect(()=>{
+    async function didMount(){
+      await getByGroupId(localStorage.getItem("groupId"))
+    }
+
+    didMount()
+  },[])
+
+  useEffect(()=>{
+    if(closeModal){
+      getByGroupId(localStorage.getItem("groupId"))
+    }
+  },[closeModal])
+
+  const getAllData =(updatedAttrs)=>{
+      setData((temp) => ({
+      ...temp,
+      ...updatedAttrs,
+    }));
+  }
+  const onSave = ()=> {
+    const {
+      name, 
+      firstname, 
+      phone,
+      email, 
+      password, 
+      nameSociety,
+      type,
+      phoneSociety,
+      emailSociety,
+      creationDate,
+      lawerForm,
+      managementStyle,
+      accountBank,
+      bank,
+      immatriculation,
+      structure,
+      turnover
+    } = data;
+
+    const REQUIRED_FIELD = [
+      nameSociety,
+      name,
+      firstname,
+      password,
+      immatriculation,
+      turnover,
+      email
+    ];
+
+    let isFormValid = REQUIRED_FIELD.every((item) => Boolean(item));
+
+    if (!isFormValid) {
+      // error message
+      showError("Please complete the required fields");
+      return;
+    }
+    if (
+      !STRONG_PASSWORD_REGEX.test(password) 
+    ) {
+      //error
+      showError(
+        "The password must have at least 6 characters including a number, a special character, a lower case letter and an upper case letter."
+      );
+      return;
+    }
+    const society = {
+
+      name: nameSociety,
+      type,
+      phone: phoneSociety,
+      email: emailSociety,
+      creationDate,
+      lawerForm,
+      managementStyle,
+      accountBank,
+      bank,
+      immatriculation,
+      structure,
+      turnover,
+      groupId: localStorage.getItem("groupId"),
+      adminId:null // Insert in BAck
+    };
+    const users = {
+      name,
+      firstname,
+      phone,
+      email,
+      password,
+      isAdmin: false,
+    };
+    
+    const allData = {
+      society,
+      users,
+      noAuth:true
+    };
+    /* proceed to setup*/
+    register(allData);
+  }
+
   return (
     <>
       <Header
-        parentClass="pb-7 pt-7"
+        parentClass="pb-7 pt-7 mb-2"
+        content={<AddSociety passDataToParent={getAllData} />}
+        title = "Society Management"
+        onSave={onSave}
+        closeModal={closeModal}
+        setCloseModal={setCloseModal}
       />
       <Container className="mt--7 content-global " fluid>
         {/* Table */}
@@ -25,7 +160,16 @@ const Tables = () => {
               <Table className="align-items-center table-flush" responsive>
                 <HeadTable/>
                 <tbody>
-                  <Items />
+                  {societyLists?.length ? 
+                    societyLists?.map((item,index)=>{
+                      return(
+                        <Items 
+                            data={item}
+                        />
+                        )
+                    }) :  <td colSpan="4" className="text-center text-dark">No items</td>
+                  
+                  }
                 </tbody>
               </Table>
               
@@ -37,4 +181,4 @@ const Tables = () => {
   );
 };
 
-export default Tables;
+export default Index;

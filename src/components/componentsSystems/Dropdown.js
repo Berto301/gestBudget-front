@@ -1,17 +1,25 @@
+import {useEffect,useState} from 'react'
 import {
   FormGroup,
   Input,
 } from "reactstrap";
 
-const DropdownSystem = ({name,label,lists,passData}) => {
+const DropdownSystem = ({name,label,lists,passData,value:valueProps}) => {
+  const [value,setValue] = useState("")
   const handleChange = (e)=>{
     const {value} = e.target
+    setValue(value)
      passData({[name]:value})
     // reduxDispatch({
     //   type:"SELECTED_VALUE",
     //   payload:{name:item}
     // })
   }
+  useEffect(()=>{
+    if(valueProps){
+      setValue(valueProps)
+    }
+  },[valueProps])
   
   return (
     
@@ -25,6 +33,8 @@ const DropdownSystem = ({name,label,lists,passData}) => {
           type="select"
           onChange={handleChange}
           defaultValue={lists?.[0] || ""}
+          autoComplete="new-text"
+          value={value}
         >
           {lists?.length ?
               lists?.map((item,index)=>{

@@ -4,18 +4,28 @@ import { useNotification } from "./index";
 import { useHistory } from "react-router-dom";
 
 export function useUser() {
+  let noAuth = false 
   const [usersConnected, setUsersConnected] = useState({});
   const { showError, showSuccess } = useNotification();
+  const [closeModal,setCloseModal] = useState(false)
   const history = useHistory();
 
   const register = async (data) => {
+    if(data?.noAuth){
+      noAuth = true
+      delete data?.noAuth
+    }
     const response = await UsersService.register(data);
     if (response?.data) {
       const { success, message } = response?.data;
       if (!success) return showError(message);
       showSuccess("Account created");
+      if(!noAuth){
+        return history.push("/auth/login");
+      }
+      setCloseModal(true)
       //redirect to login
-      history.push("/auth/login");
+      
     } else {
       showError("An error occured");
     }
@@ -71,7 +81,8 @@ export function useUser() {
         if(!success) showError(message)
         if(object){
           setUsersConnected(object)
-          showSuccess("Updated users successful")
+          showSuccess("Users updated successful")
+          setCloseModal(true)
         }
       }else{
         showError("Ann error occured while updating users");
@@ -85,5 +96,7 @@ export function useUser() {
     _getById,
     _update,
     usersConnected,
+    closeModal,
+    setCloseModal
   };
 }

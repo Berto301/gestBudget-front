@@ -2,6 +2,7 @@ import {useState,useEffect} from'react'
 import {
   FormGroup,
   Input,
+  Form
 } from "reactstrap";
 
 const InputSystem = ({name,label,passData,type,value:valueProps}) => {
@@ -23,6 +24,7 @@ const InputSystem = ({name,label,passData,type,value:valueProps}) => {
 
 
   return (
+    <Form autoComplete="off">
     <FormGroup>
       <label
         className="form-control-label"
@@ -40,10 +42,9 @@ const InputSystem = ({name,label,passData,type,value:valueProps}) => {
         onChange={onChange}
         value={value}
         //onMouseLeave={onBlur}
-        autoComplete="new-text"
       />    
     </FormGroup>
-
+    </Form>
   );
 };
 

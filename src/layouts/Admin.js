@@ -19,12 +19,15 @@ const Admin = (props) => {
   let standardNotification = useSelector((state) => state.standardNotification);
   const mainContent = React.useRef(null);
   const location = useLocation();
-  let actualRoutes = routes || []
   const {_getById,usersConnected} = useUser()
   const {_getById:_getGroupById,groups} = useGroup()
-
+  const [actualRoutes,setActualRoutes]=useState([])
   useEffect(()=>{
-    if(!usersConnected?.isAdmin) actualRoutes = societyRoutes
+    if(!usersConnected?.isAdmin) {
+      setActualRoutes(societyRoutes)
+    }else{
+      setActualRoutes(routes)
+    }
   },[usersConnected?.isAdmin])
   
 

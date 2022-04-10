@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Row, Col } from "reactstrap";
 //import {useSelector} from 'react-redux'
 import { Input, Dropdown } from "../../../components/componentsSystems";
-import { lists } from "../utils/constants";
+import { lists } from "../../../_helpers/_constants";
 
-const Register = ({ passDataToParent }) => {
+const Group = ({ passDataToParent }) => {
   let newLists = [];
   // let selectValue = useSelector((state) => state.selectedValue) || {};
   const [dataGroups, setDataGroups] = useState({
@@ -63,4 +63,4 @@ const Register = ({ passDataToParent }) => {
   );
 };
 
-export default Register;
+export default Group;

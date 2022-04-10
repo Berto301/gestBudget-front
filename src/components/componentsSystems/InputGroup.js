@@ -4,7 +4,8 @@ import {
   Input,
   InputGroup,
   InputGroupAddon,
-  InputGroupText
+  InputGroupText,
+  Form
 } from "reactstrap";
 
 const InputGroupSystem = ({name,label,passData,autoComplete,icon,type}) => {
@@ -19,6 +20,7 @@ const InputGroupSystem = ({name,label,passData,autoComplete,icon,type}) => {
   //   passData({[name]:value})
   // }
   return (
+    <Form autoComplete="off">
     <FormGroup >
       <label
         className="form-control-label"
@@ -46,6 +48,7 @@ const InputGroupSystem = ({name,label,passData,autoComplete,icon,type}) => {
       />  
       </InputGroup> 
     </FormGroup>
+    </Form>
   );
 };
 
