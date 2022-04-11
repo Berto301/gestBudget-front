@@ -101,3 +101,19 @@
     background-color: transparent !important;
     align-items:unset;
 }
+
+.content-modal-delete{
+
+    .others-description{
+        font-size: 10px;
+    }
+}
+.modal{
+    @media (min-width: 576px){
+        .modal-dialog {
+            max-width: 600px !important;
+            margin: 1.75rem auto;
+        }
+    }
+        
+}

@@ -36,17 +36,33 @@ const _update = async (data) => {
       const societyUpdated = await SocietyService.updateById(data)
       if(societyUpdated?.data){
         const {success,message="",object={}} = societyUpdated?.data
-        if(!success) showError(message)
+        if(!success) return showError(message)
         if(object){
           setSociety(object)
           showSuccess("Society updated successful")
           setCloseModal(true)
         }
       }else{
-        showError("Ann error occured while updating users");
+        showError("Ann error occured while updating society");
       }
     }
   };
+
+  const _delete = async (id)=>{
+    if(id){
+      const societyDeleted = await SocietyService.deleteById(id)
+      if(societyDeleted?.data){
+        const {success,message,object={}} = societyDeleted?.data
+        if(!success) showError(message)
+        if(object){
+          showSuccess("Society deleted successFul")
+          setCloseModal(true)
+        }
+      }else{
+        showError("Ann error occured while deleting society");
+      }
+    }
+  }
   
 
   return {
@@ -56,7 +72,8 @@ const _update = async (data) => {
     societyLists,
     _society,
     closeModal,
-    setCloseModal
+    setCloseModal,
+    _delete
   };
 }
 

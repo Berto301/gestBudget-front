@@ -12,11 +12,11 @@ import Items from "./items.js";
 import {useNotification,useUser,useSociety} from '../../../../hooks/'
 import AddSociety from './addSociety'
 import { STRONG_PASSWORD_REGEX } from "../../../../_helpers/_constants";
-
+import {socket} from '../../../../_helpers/socket'
 
 
 const Index = () => {
-  const {showError,showSuccess} = useNotification()
+  const {showError} = useNotification()
   const {register,setCloseModal,closeModal}= useUser()
   const {getByGroupId,societyLists} = useSociety()
   const [data, setData] = useState({
@@ -43,15 +43,16 @@ const Index = () => {
     async function didMount(){
       await getByGroupId(localStorage.getItem("groupId"))
     }
-
+    /**Real time by group */
+    socket.on("reload_information", async (groupId) => {
+      if (localStorage.getItem("groupId") === groupId) {
+        await getByGroupId(localStorage.getItem("groupId"))
+      }
+    });
     didMount()
   },[])
 
-  useEffect(()=>{
-    if(closeModal){
-      getByGroupId(localStorage.getItem("groupId"))
-    }
-  },[closeModal])
+  
 
   const getAllData =(updatedAttrs)=>{
       setData((temp) => ({
@@ -89,7 +90,7 @@ const Index = () => {
       turnover,
       email
     ];
-
+    
     let isFormValid = REQUIRED_FIELD.every((item) => Boolean(item));
 
     if (!isFormValid) {
@@ -151,7 +152,7 @@ const Index = () => {
         closeModal={closeModal}
         setCloseModal={setCloseModal}
       />
-      <Container className="mt--7 content-global " fluid>
+      <Container className="mt--7 content-global bg-gradient-info" fluid>
         {/* Table */}
         <Row>
           <div className="col">

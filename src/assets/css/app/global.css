@@ -105,4 +105,15 @@
   align-items: unset;
 }
 
+.content-modal-delete .others-description {
+  font-size: 10px;
+}
+
+@media (min-width: 576px) {
+  .modal .modal-dialog {
+    max-width: 600px !important;
+    margin: 1.75rem auto;
+  }
+}
+
 /*# sourceMappingURL=global.css.map */

@@ -41,7 +41,7 @@ const HeaderBase = ({parentClass,title,content,onSave,closeModal,setCloseModal})
         isOpen={isOpen}
         toggle={toggle}
         onSave={onSave}
-        isCreated={true}
+        type="create"
         title=""
       />
     </>

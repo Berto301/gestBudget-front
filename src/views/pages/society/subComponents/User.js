@@ -1,24 +1,19 @@
-import React ,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { Row, Col } from "reactstrap";
 import { Input, InputGroup } from "../../../../components/componentsSystems";
-import {useUser} from '../../../../hooks'
-const User = ({ passDataToParent , id}) => {
-  const {_getById,usersConnected:user} =useUser()
-  useEffect(()=>{
-    if(id){
-      _getById(id)
+import { useUser } from "../../../../hooks";
+const User = ({ passDataToParent, id, hidePassword }) => {
+  const { _getById, usersConnected: user } = useUser();
+  useEffect(() => {
+    if (id) {
+      _getById(id);
     }
-  },[id])
+  }, [id]);
 
- const {
-   name,
-   firstname,
-   email,
-   phone
- } = user
-  
+  const { name, firstname, email, phone } = user;
+
   return (
-    <div className="pl-lg-4" >
+    <div className="pl-lg-4">
       <Row>
         <Col lg="6">
           <Input
@@ -41,7 +36,13 @@ const User = ({ passDataToParent , id}) => {
       </Row>
       <Row>
         <Col lg="6">
-          <Input name="phone" type="text" label="Phone" passData={passDataToParent} value={phone}/>
+          <Input
+            name="phone"
+            type="text"
+            label="Phone"
+            passData={passDataToParent}
+            value={phone}
+          />
         </Col>
         <Col lg="6">
           <Input
@@ -53,6 +54,22 @@ const User = ({ passDataToParent , id}) => {
           />
         </Col>
       </Row>
+      {!hidePassword ? (
+        <Row>
+          <Col lg="6">
+            <InputGroup
+              name="password"
+              type="password"
+              label="Password"
+              passData={passDataToParent}
+              icon="ni ni-lock-circle-open"
+              autoComplete="new-password"
+            />
+          </Col>
+        </Row>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

@@ -9,9 +9,11 @@ export const NUMBER_CHARACTER = 60;
 
 export const lists =[
   {name:"",type:[]},
-  {name:"Agronomie",type:["Transformation alimentaire","Production animale","Transformation"]},
-  {name:"Informatique",type:["ESN","Cyber","Infographie","Reparateur"]},
-  {name:"Business",type:["Vente de voiture","Vente de terrain"]}
+  {name:"Agency",type:["","Recruitment agency","Staffing agency","Travel agency"]},
+  {name:"Agronomie",type:["","Animal production","Food production","Food Quality Manager"]},
+  {name:"Computer",type:["","Computer repairer","Cyber","Infographic","Digital services company"]},
+  {name:"Business",type:["","Car sales","Land sale","Land House"]},
+  {name:"Restoration",type:["Casual dining","Fast food","Ghost kitchens","Pizzerias"]}
 ]
 
 export const LAWER_FORMS =[

@@ -3,30 +3,45 @@ import { Row, Col } from "reactstrap";
 //import {useSelector} from 'react-redux'
 import { Input, Dropdown } from "../../../../components/componentsSystems";
 import { lists, MANAGEMENT_STYLES,LAWER_FORMS,BANK,STRUCTURES } from "../../../../_helpers/_constants";
-import {useSociety} from '../../../../hooks'
+import {useSociety,useGroup} from '../../../../hooks'
 
 const Society = ({ passDataToParent , id }) => {
-  let newLists = [];
    const {_getById,_society} =useSociety()
-
+   const {_getById:_getGroupId,groups} = useGroup()
+   
   useEffect(()=>{
     if(id){
       _getById(id)
     }
   },[id])
 
+  useEffect(() => {
+    async function didMount() {
+      const groupId = localStorage.getItem("groupId") || null;
+      if (groupId) await _getGroupId(groupId);
+    }
+    didMount();
+  }, []);
+  
+
   const arrangeLists = (list) => {
     const tempLists = [];
-    if (list?.length) {
-      for (let item of list) {
-        tempLists.push(item.name);
+    if(groups?.activityArea){
+      if (list?.length) {
+        for (let item of list) {
+          if(item?.name===groups?.activityArea){
+            if(item?.type?.length){
+              for(let type of item?.type){
+                tempLists.push(type)
+              }
+            }
+          }
+        }
       }
     }
     return tempLists;
   };
   const areaActivityLists = arrangeLists(lists) || [];
-   
-   console.log(_society)
   return (
     <div className="pl-lg-4">
       <h3>Entreprise informations </h3>

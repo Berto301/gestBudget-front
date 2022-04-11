@@ -17,7 +17,7 @@ import {
   useUser,
   useSociety
 } from '../../../../hooks'
-
+import DeleteComponent from '../../../../components/Modals/Delete'
 const Items = ({data}) => {
   const {
     turnover:turnOverProps,
@@ -31,6 +31,7 @@ const Items = ({data}) => {
   const {showError} = useNotification()
    const [isOpenEditUser,setIsOpenEditUser] = useState(false)
    const [isOpenEditSociety,setIsOpenEditSociety] = useState(false)
+   const [isOpenDeleteSociety,setIsOpenDeleteSociety] = useState(false)
    const {
      _update,
      closeModal,
@@ -40,7 +41,8 @@ const Items = ({data}) => {
   const {
     _update:updateSociety,
     closeModal:closeModalSociety,
-    setCloseModal:setCloseModalSociety
+    setCloseModal:setCloseModalSociety,
+    _delete
   }= useSociety()
 
    const [dataUser,setDataUser] =useState({
@@ -78,6 +80,12 @@ const Items = ({data}) => {
     setCloseModalSociety(false)
    }
 
+   const toggleDeleteSociety = (id) => {
+    setIsOpenDeleteSociety(!isOpenDeleteSociety)
+    setCloseModal(false)
+    setCloseModalSociety(false)
+   }
+
    const getUserData = (updatedAttrs)=>{
      setDataUser((temp) => ({
       ...temp,
@@ -111,6 +119,7 @@ const Items = ({data}) => {
      if(closeModal || closeModalSociety){
        setIsOpenEditUser(false)
        setIsOpenEditSociety(false)
+       setIsOpenDeleteSociety(false)
      }
    },[closeModal,closeModalSociety])
 
@@ -157,7 +166,7 @@ const Items = ({data}) => {
       adminId:idUser,
       groupId:localStorage.getItem("groupId")
    }
-
+   
    updateSociety(dataToUpdate)
 
   }
@@ -184,6 +193,10 @@ const Items = ({data}) => {
    }
 
    _update(dataToUpdate)
+  }
+
+  const onDeleteSociety = ()=>{
+    _delete(idSociety)
   }
   return (
     <>
@@ -277,7 +290,7 @@ const Items = ({data}) => {
             <DropdownItem href="#pablo" onClick={toggleEditSociety}>
               Edit Society
             </DropdownItem>
-            <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+            <DropdownItem href="#pablo" onClick={toggleDeleteSociety}>
               Delete
             </DropdownItem>
           </DropdownMenu>
@@ -286,11 +299,11 @@ const Items = ({data}) => {
     </tr>
 
      <ModalBase 
-        content={<User id={idUser} passDataToParent={getUserData}/>}
+        content={<User id={idUser} passDataToParent={getUserData} hidePassword={true}/>}
         isOpen={isOpenEditUser}
         toggle={toggleEditUser}
         onSave={onUpdateUser}
-        title=""
+        type="update"
       />
 
       <ModalBase 
@@ -298,8 +311,16 @@ const Items = ({data}) => {
         isOpen={isOpenEditSociety}
         toggle={toggleEditSociety}
         onSave={onUpdateSociety}
-        title=""
+        type="update"
       />
+
+    <ModalBase 
+      content={<DeleteComponent object="this society" others="If you delete this, you'll delete all relative informations about it. "/>}
+      isOpen={isOpenDeleteSociety}
+      toggle={toggleDeleteSociety}
+      onSave={onDeleteSociety}
+      type="delete"
+    />
     </>
   );
 };
