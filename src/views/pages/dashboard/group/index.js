@@ -1,67 +1,55 @@
-
-import { useState } from "react";
-import { Pie, Doughnut} from "react-chartjs-2";
+import { Pie, Doughnut } from "react-chartjs-2";
 // reactstrap components
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
-
+import { Card, CardHeader, CardBody, Container, Row, Col } from "reactstrap";
 
 import Header from "components/Headers/Header.js";
 
 const Index = (props) => {
-  
-  const data ={
-      labels: ["ESN", "Cyber"],
-      datasets: [
-        {
-          data: [4, 6],
-          backgroundColor:["#5e72e4","#f2f2f2"]
-        },
-      ],
-    };  
+  const data = {
+    labels: ["ESN", "Cyber"],
+    datasets: [
+      {
+        data: [4, 6],
+        backgroundColor: ["#5e72e4", "#f2f2f2"],
+      },
+    ],
+  };
 
- const dataBySales ={
+  const dataBySales = {
     labels: ["Society 1", "Society 2"],
     datasets: [
       {
         data: [400, 600],
-        backgroundColor:["#5e72e4","#f2f2f2"]
+        backgroundColor: ["#5e72e4", "#f2f2f2"],
       },
     ],
-  };  
+  };
 
-  const dataByRecipes ={
+  const dataByRecipes = {
     labels: ["Society 1", "Society 2"],
     datasets: [
       {
         data: [200, 100],
-        backgroundColor:["#fe72e4","#e2e2e2"]
+        backgroundColor: ["#fe72e4", "#e2e2e2"],
       },
     ],
-  };  
+  };
 
-  const options={
-    defaults:{
+  const options = {
+    defaults: {
       legend: {
-          display: false,
-          
-        },
-    }
-  }
-  
+        display: false,
+      },
+    },
+  };
+
   return (
     <>
       <Header />
       {/* Page content */}
       <Container className="mt--7" fluid>
         <Row>
-         <Col xl="4">
+          <Col xl="4">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
                 <Row className="align-items-center">
@@ -108,7 +96,7 @@ const Index = (props) => {
               </CardBody>
             </Card>
           </Col>
-         
+
           <Col xl="4">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
@@ -133,7 +121,6 @@ const Index = (props) => {
             </Card>
           </Col>
         </Row>
-        
       </Container>
     </>
   );

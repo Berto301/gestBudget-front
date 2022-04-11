@@ -1,3 +1,5 @@
+/*eslint react-hooks/exhaustive-deps:off*/
+
 import { useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 // core components
@@ -36,7 +38,10 @@ const Index = (props) => {
       {/* Page content */}
       <Container className="mt--7" fluid>
         <Row>
-          <Profile name={`${usersConnected?.name} ${usersConnected?.firstname}`} isAdmin={usersConnected?.isAdmin}/>
+          <Profile
+            name={`${usersConnected?.name} ${usersConnected?.firstname}`}
+            isAdmin={usersConnected?.isAdmin}
+          />
           <Col className="order-xl-1" xl="8">
             <div className="mb-2">
               <UserInformation users={dataUsers} />

@@ -2,15 +2,15 @@
 import React, { useEffect } from "react";
 import { Row, Col } from "reactstrap";
 //import {useSelector} from 'react-redux'
-import { Input, Dropdown } from "../../../../components/componentsSystems";
+import { Input, Dropdown } from "../../../../../components/componentsSystems";
 import {
   lists,
   MANAGEMENT_STYLES,
   LAWER_FORMS,
   BANK,
   STRUCTURES,
-} from "../../../../_helpers/_constants";
-import { useSociety, useGroup } from "../../../../hooks";
+} from "../../../../../_helpers/_constants";
+import { useSociety, useGroup } from "../../../../../hooks";
 
 const Society = ({ passDataToParent, id }) => {
   const { _getById, _society } = useSociety();

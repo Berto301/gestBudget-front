@@ -20,7 +20,7 @@ const Admin = (props) => {
   const mainContent = React.useRef(null);
   const location = useLocation();
   const {_getById,usersConnected} = useUser()
-  const {_getById:_getGroupById,groups} = useGroup()
+  const {_getById:_getGroupById} = useGroup()
   const [actualRoutes,setActualRoutes]=useState([])
   useEffect(()=>{
     if(!usersConnected?.isAdmin) {

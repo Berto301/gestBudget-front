@@ -1,7 +1,7 @@
 
 
 // reactstrap components
-import { Button, Container, Row, Col } from "reactstrap";
+import {  Container, Row, Col } from "reactstrap";
 
 const UserHeader = ({name,isAdmin}) => {
   return (

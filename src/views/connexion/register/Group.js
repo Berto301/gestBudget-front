@@ -5,14 +5,12 @@ import { Input, Dropdown } from "../../../components/componentsSystems";
 import { lists } from "../../../_helpers/_constants";
 
 const Group = ({ passDataToParent }) => {
-  let newLists = [];
   // let selectValue = useSelector((state) => state.selectedValue) || {};
   const [dataGroups, setDataGroups] = useState({
     name: "",
     areaActivity: "",
     phone: "",
     email: "",
-    adress: "",
   });
   const getData = (updatedAttrs) => {
     console.log(updatedAttrs);
@@ -49,13 +47,10 @@ const Group = ({ passDataToParent }) => {
         </Col>
       </Row>
       <Row>
-        <Col lg="4">
-          <Input name="adress" type="text" label="Adress" passData={getData} />
-        </Col>
-        <Col lg="4">
+        <Col lg="6">
           <Input name="email" type="text" label="Email" passData={getData} />
         </Col>
-        <Col lg="4">
+        <Col lg="6">
           <Input name="phone" type="text" label="Phone" passData={getData} />
         </Col>
       </Row>

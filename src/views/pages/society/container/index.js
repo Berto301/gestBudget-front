@@ -1,24 +1,19 @@
-import {useState,useEffect} from 'react'
+/*eslint react-hooks/exhaustive-deps:off*/
+import { useState, useEffect } from "react";
 // reactstrap components
-import {
-  Card,
-  Table,
-  Container,
-  Row,
-} from "reactstrap";
+import { Card, Table, Container, Row } from "reactstrap";
 import Header from "../../../../components/Headers/HeaderBase.js";
 import HeadTable from "../subComponents/HeadTable.js";
 import Items from "./items.js";
-import {useNotification,useUser,useSociety} from '../../../../hooks/'
-import AddSociety from './addSociety'
+import { useNotification, useUser, useSociety } from "../../../../hooks/";
+import AddSociety from "./addSociety";
 import { STRONG_PASSWORD_REGEX } from "../../../../_helpers/_constants";
-import {socket} from '../../../../_helpers/socket'
-
+import { socket } from "../../../../_helpers/socket";
 
 const Index = () => {
-  const {showError} = useNotification()
-  const {register,setCloseModal,closeModal}= useUser()
-  const {getByGroupId,societyLists} = useSociety()
+  const { showError } = useNotification();
+  const { register, setCloseModal, closeModal } = useUser();
+  const { getByGroupId, societyLists } = useSociety();
   const [data, setData] = useState({
     name: "",
     firstname: "",
@@ -30,43 +25,41 @@ const Index = () => {
     phoneSociety: "",
     emailSociety: "",
     creationDate: "",
-    lawerForm:"",
-    managementStyle:"",
-    accountBank:"",
-    bank:"",
-    immatriculation:"",
-    structure:"",
-    turnover:""
+    lawerForm: "",
+    managementStyle: "",
+    accountBank: "",
+    bank: "",
+    immatriculation: "",
+    structure: "",
+    turnover: "",
   });
 
-  useEffect(()=>{
-    async function didMount(){
-      await getByGroupId(localStorage.getItem("groupId"))
+  useEffect(() => {
+    async function didMount() {
+      await getByGroupId(localStorage.getItem("groupId"));
     }
     /**Real time by group */
     socket.on("reload_information", async (groupId) => {
       if (localStorage.getItem("groupId") === groupId) {
-        await getByGroupId(localStorage.getItem("groupId"))
+        await getByGroupId(localStorage.getItem("groupId"));
       }
     });
-    didMount()
-  },[])
+    didMount();
+  }, []);
 
-  
-
-  const getAllData =(updatedAttrs)=>{
-      setData((temp) => ({
+  const getAllData = (updatedAttrs) => {
+    setData((temp) => ({
       ...temp,
       ...updatedAttrs,
     }));
-  }
-  const onSave = ()=> {
+  };
+  const onSave = () => {
     const {
-      name, 
-      firstname, 
+      name,
+      firstname,
       phone,
-      email, 
-      password, 
+      email,
+      password,
       nameSociety,
       type,
       phoneSociety,
@@ -78,7 +71,7 @@ const Index = () => {
       bank,
       immatriculation,
       structure,
-      turnover
+      turnover,
     } = data;
 
     const REQUIRED_FIELD = [
@@ -88,9 +81,9 @@ const Index = () => {
       password,
       immatriculation,
       turnover,
-      email
+      email,
     ];
-    
+
     let isFormValid = REQUIRED_FIELD.every((item) => Boolean(item));
 
     if (!isFormValid) {
@@ -98,9 +91,7 @@ const Index = () => {
       showError("Please complete the required fields");
       return;
     }
-    if (
-      !STRONG_PASSWORD_REGEX.test(password) 
-    ) {
+    if (!STRONG_PASSWORD_REGEX.test(password)) {
       //error
       showError(
         "The password must have at least 6 characters including a number, a special character, a lower case letter and an upper case letter."
@@ -108,7 +99,6 @@ const Index = () => {
       return;
     }
     const society = {
-
       name: nameSociety,
       type,
       phone: phoneSociety,
@@ -122,7 +112,7 @@ const Index = () => {
       structure,
       turnover,
       groupId: localStorage.getItem("groupId"),
-      adminId:null // Insert in BAck
+      adminId: null, // Insert in BAck
     };
     const users = {
       name,
@@ -132,22 +122,22 @@ const Index = () => {
       password,
       isAdmin: false,
     };
-    
+
     const allData = {
       society,
       users,
-      noAuth:true
+      noAuth: true,
     };
     /* proceed to setup*/
     register(allData);
-  }
+  };
 
   return (
     <>
       <Header
         parentClass="pb-7 pt-7 mb-2"
         content={<AddSociety passDataToParent={getAllData} />}
-        title = "Society Management"
+        title="Society Management"
         onSave={onSave}
         closeModal={closeModal}
         setCloseModal={setCloseModal}
@@ -157,23 +147,20 @@ const Index = () => {
         <Row>
           <div className="col">
             <Card className="shadow">
-              
               <Table className="align-items-center table-flush" responsive>
-                <HeadTable/>
+                <HeadTable />
                 <tbody>
-                  {societyLists?.length ? 
-                    societyLists?.map((item,index)=>{
-                      return(
-                        <Items 
-                            data={item}
-                        />
-                        )
-                    }) :  <td colSpan="4" className="text-center text-dark">No items</td>
-                  
-                  }
+                  {societyLists?.length ? (
+                    societyLists?.map((item, index) => {
+                      return <Items data={item} />;
+                    })
+                  ) : (
+                    <td colSpan="4" className="text-center text-dark">
+                      No items
+                    </td>
+                  )}
                 </tbody>
               </Table>
-              
             </Card>
           </div>
         </Row>

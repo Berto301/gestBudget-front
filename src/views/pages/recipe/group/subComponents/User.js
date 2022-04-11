@@ -1,8 +1,9 @@
 /*eslint react-hooks/exhaustive-deps:off*/
+
 import React, { useEffect } from "react";
 import { Row, Col } from "reactstrap";
-import { Input, InputGroup } from "../../../../components/componentsSystems";
-import { useUser } from "../../../../hooks";
+import { Input, InputGroup } from "../../../../../components/componentsSystems";
+import { useUser } from "../../../../../hooks";
 const User = ({ passDataToParent, id, hidePassword }) => {
   const { _getById, usersConnected: user } = useUser();
   useEffect(() => {

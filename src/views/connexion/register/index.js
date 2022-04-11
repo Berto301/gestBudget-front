@@ -21,7 +21,6 @@ const Register = ({ showError }) => {
     areaActivity: "",
     phone: "",
     email: "",
-    adress: "",
   });
   const { register } = useUser(); /* Custom Hooks [src/hooks] */
   const getUserData = (params) => {
@@ -40,7 +39,6 @@ const Register = ({ showError }) => {
       areaActivity,
       phone: phoneGroup,
       email: emailGroup,
-      adress,
     } = dataGroups;
 
     const REQUIRED_FIELD = [

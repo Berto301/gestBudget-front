@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Doughnut } from "react-chartjs-2";
 // reactstrap components
 import { Card, CardBody, Container, Row, Col } from "reactstrap";
