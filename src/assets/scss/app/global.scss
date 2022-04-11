@@ -117,3 +117,15 @@
     }
         
 }
+.custom_mini_badge{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-top:7px;
+}
+
+.content_card{
+    max-height: 120px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
