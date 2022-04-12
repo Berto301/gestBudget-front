@@ -7,7 +7,6 @@ import HeadTable from "../subComponents/HeadTable.js";
 import Items from "./items.js";
 import { useNotification, useRecipe } from "../../../../../hooks/";
 import AddRecipe from "./AddRecipe";
-import { STRONG_PASSWORD_REGEX } from "../../../../../_helpers/_constants";
 import { socket } from "../../../../../_helpers/socket";
 
 const Index = () => {

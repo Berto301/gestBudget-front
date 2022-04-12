@@ -6,256 +6,133 @@ import {
   DropdownItem,
   UncontrolledDropdown,
   DropdownToggle,
-  Media,
-  UncontrolledTooltip,
 } from "reactstrap";
 import ModalBase from "../../../../../components/Modals/Base";
-import User from "../subComponents/User";
-import Society from "../subComponents/Society";
+import Content from "../subComponents/Content";
 
-import { useNotification, useUser, useSociety } from "../../../../../hooks";
+import { useNotification, useSales} from "../../../../../hooks";
 import DeleteComponent from "../../../../../components/Modals/Delete";
 const Items = ({ data }) => {
   const {
-    turnover: turnOverProps,
-    name: nameSocietyProps,
-    type: typeProps,
-    adminId: adminIdProps,
-    lawerForm: lawerFormProps,
-    bank: bankProps,
-    _id: idSociety,
+    name: nameProps,
+    description: descriptionProps,
+    color: colorProps,
+    estimation: estimationProps,
+    icon: iconProps,
+    _id: idSales,
   } = data;
+
   const { showError } = useNotification();
-  const [isOpenEditUser, setIsOpenEditUser] = useState(false);
-  const [isOpenEditSociety, setIsOpenEditSociety] = useState(false);
-  const [isOpenDeleteSociety, setIsOpenDeleteSociety] = useState(false);
-  const { _update, closeModal, setCloseModal } = useUser();
+  const [isOpenEditSale, setIsOpenEditSale] = useState(false);
+  const [isOpenDeleteSale, setIsOpenDeleteSale] = useState(false);
+
+
+  
 
   const {
-    _update: updateSociety,
-    closeModal: closeModalSociety,
-    setCloseModal: setCloseModalSociety,
+    _update,
+    closeModal,
+    setCloseModal,
     _delete,
-  } = useSociety();
+  } = useSales();
 
-  const [dataUser, setDataUser] = useState({
+
+  const [dataSale, setDataSale] = useState({
     name: "",
-    firstname: "",
-    email: "",
-    phone: "",
+    description: "",
+    icon: "",
+    color: "",
+    estimation:""
   });
 
-  const [dataSociety, setDataSociety] = useState({
-    nameSociety: "",
-    type: "",
-    phoneSociety: "",
-    emailSociety: "",
-    creationDate: "",
-    lawerForm: "",
-    managementStyle: "",
-    accountBank: "",
-    bank: "",
-    immatriculation: "",
-    structure: "",
-    turnover: "",
-    adminId: null,
-    groupId: null,
-  });
 
-  const toggleEditUser = (id) => {
-    setIsOpenEditUser(!isOpenEditUser);
+  const toggleEditSales = (id) => {
+    setIsOpenEditSale(!isOpenEditSale);
     setCloseModal(false);
-    setCloseModalSociety(false);
   };
-  const toggleEditSociety = (id) => {
-    setIsOpenEditSociety(!isOpenEditSociety);
+ 
+
+  const toggleDeleteSales = (id) => {
+    setIsOpenDeleteSale(!isOpenDeleteSale);
     setCloseModal(false);
-    setCloseModalSociety(false);
   };
 
-  const toggleDeleteSociety = (id) => {
-    setIsOpenDeleteSociety(!isOpenDeleteSociety);
-    setCloseModal(false);
-    setCloseModalSociety(false);
-  };
-
-  const getUserData = (updatedAttrs) => {
-    setDataUser((temp) => ({
+  const getSalesData = (updatedAttrs) => {
+    setDataSale((temp) => ({
       ...temp,
       ...updatedAttrs,
     }));
   };
 
-  const getSocietyData = (updatedAttrs) => {
-    setDataSociety((temp) => ({
-      ...temp,
-      ...updatedAttrs,
-    }));
-  };
 
   useEffect(() => {
-    setDataSociety({
-      ...data,
-      adminId: adminIdProps?._id,
-      nameSociety: nameSocietyProps,
-      emailSociety: data?.email,
-      phoneSociety: data?.phone,
+    setDataSale({
+      ...data
     });
-  }, []);
-  useEffect(() => {
-    setDataUser({
-      ...adminIdProps, //Information admin copy
-    });
-  }, [adminIdProps]);
+  }, [data]);
 
   useEffect(() => {
-    if (closeModal || closeModalSociety) {
-      setIsOpenEditUser(false);
-      setIsOpenEditSociety(false);
-      setIsOpenDeleteSociety(false);
+    if(closeModal){
+      setIsOpenEditSale(false)
+      setIsOpenDeleteSale(false)
     }
-  }, [closeModal, closeModalSociety]);
+  }, [closeModal]);
 
-  const {
-    name: nameUser,
-    firstname: firstnameUSer,
-    _id: idUser,
-  } = adminIdProps;
 
-  const onUpdateSociety = () => {
-    const {
-      nameSociety,
-      type,
-      phoneSociety,
-      emailSociety,
-      creationDate,
-      lawerForm,
-      managementStyle,
-      accountBank,
-      bank,
-      immatriculation,
-      structure,
-      turnover,
-    } = dataSociety;
+   const onUpdateSale = () => {
+    const { name, description, icon, color , estimation } = dataSale;
 
-    if (!nameSociety || !turnover || !immatriculation) {
-      return showError("Please, complete all required fields");
-    }
-
-    const dataToUpdate = {
-      _id: idSociety,
-      name: nameSociety,
-      type,
-      phone: phoneSociety,
-      email: emailSociety,
-      creationDate: creationDate || null,
-      lawerForm,
-      managementStyle,
-      accountBank,
-      bank,
-      immatriculation,
-      structure,
-      turnover,
-      adminId: idUser,
-      groupId: localStorage.getItem("groupId"),
-    };
-
-    updateSociety(dataToUpdate);
-  };
-
-  const onUpdateUser = () => {
-    const { name, firstname, email, phone } = dataUser;
-
-    if (!name || !firstname || !email) {
-      return showError("Please, complete all required fields");
-    }
-
-    const dataToUpdate = {
-      _id: idUser,
+    const REQUIRED_FIELD = [
       name,
-      firstname,
-      email,
-      phone,
+      estimation
+    ];
+
+    let isFormValid = REQUIRED_FIELD.every((item) => Boolean(item));
+
+    if (!isFormValid) {
+      // error message
+      showError("Please complete the required fields");
+      return;
+    }
+
+    const dataToUpdate = {
+      _id: idSales,
+      name,
+      estimation,
+      description,
+      color,
+      icon
     };
 
     _update(dataToUpdate);
-  };
+   };
 
-  const onDeleteSociety = () => {
-    _delete(idSociety);
+  const onDeleteRecipe = () => {
+    _delete(idSales);
   };
   return (
     <>
       <tr>
         <th scope="row">
-          <Media className="align-items-center">
-            <div className="avatar rounded-circle mr-3 avatar_society" >
-              <img
-                alt="..."
-                src={
-                  require("../../../../../assets/img/others/society.png")
-                    .default
-                }
-              />
+           <div className="icon icon-shape text-white rounded-circle shadow mr-2" style={{backgroundColor:`${colorProps || "#e2e2e2"}`}}>
+              <i className={iconProps || "fas fa-chart-bar"} />
             </div>
-            <Media>
-              <span className="mb-0 text-sm">{nameSocietyProps}</span>
-            </Media>
-          </Media>
+
+            {nameProps}
         </th>
-        <td>{turnOverProps} Ar</td>
+        <td>{estimationProps || 0} Ar</td>
         <td className="d-flex">
           <div
             className="align-items-center d-flex"
             style={{ marginTop: "17px" }}
           >
-            <div className="avatar-group">
-              <div
-                className="avatar avatar-sm avatar_society"
-                id="tooltip996637554"
-                onClick={(e) => e.preventDefault()}
-               
-              >
-                <img
-                  alt="..."
-                  className="rounded-circle mr-2"
-                  src={
-                    require("../../../../../assets/img/others/profile.jpg")
-                      .default
-                  }
-                />
-              </div>
-              <UncontrolledTooltip delay={0} target="tooltip996637554">
-                {nameUser + " " + firstnameUSer}
-              </UncontrolledTooltip>
-            </div>
-
-            <div className="d-flex align-items-center">
-              <span className="mr-2">{nameUser + " " + firstnameUSer}</span>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div className="d-flex flex-column">
-            <div className="mb-1">
-              <i className="fas fa-chart-pie mr-2 text-dark" />
-              {typeProps}
-            </div>
-            <div className="mb-1">
-              <i className="far fa-building mr-3 text-primary" />
-              {bankProps}
-            </div>
-            <div className="mb-1">
-              <i className="fas fa-balance-scale mr-2 text-danger" />
-              {lawerFormProps}
-            </div>
+             {descriptionProps || "-"}
           </div>
         </td>
         <td className="text-right">
           <UncontrolledDropdown>
             <DropdownToggle
               className="btn-icon-only text-light"
-              
               role="button"
               size="sm"
               color=""
@@ -264,15 +141,10 @@ const Items = ({ data }) => {
               <i className="fas fa-ellipsis-v" />
             </DropdownToggle>
             <DropdownMenu className="dropdown-menu-arrow" right>
-              <DropdownItem  onClick={toggleEditUser}>
-                Edit Admin
+              <DropdownItem onClick={toggleEditSales}>
+                Edit 
               </DropdownItem>
-              <DropdownItem  onClick={toggleEditSociety}>
-                Edit Society
-              </DropdownItem>
-              <DropdownItem  onClick={toggleDeleteSociety}>
-                Delete
-              </DropdownItem>
+              <DropdownItem onClick={toggleDeleteSales}>Delete</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </td>
@@ -280,36 +152,28 @@ const Items = ({ data }) => {
 
       <ModalBase
         content={
-          <User
-            id={idUser}
-            passDataToParent={getUserData}
-            hidePassword={true}
+          <Content
+            id={idSales}
+            passDataToParent={getSalesData}
           />
         }
-        isOpen={isOpenEditUser}
-        toggle={toggleEditUser}
-        onSave={onUpdateUser}
+        isOpen={isOpenEditSale}
+        toggle={toggleEditSales}
+        onSave={onUpdateSale}
         type="update"
       />
 
-      <ModalBase
-        content={<Society id={idSociety} passDataToParent={getSocietyData} />}
-        isOpen={isOpenEditSociety}
-        toggle={toggleEditSociety}
-        onSave={onUpdateSociety}
-        type="update"
-      />
 
       <ModalBase
         content={
           <DeleteComponent
-            object="this society"
-            others="If you delete this, you'll delete all relative informations about it. "
+            object="this sale"
+            others="You can delete only a recipe unused by a compagny. "
           />
         }
-        isOpen={isOpenDeleteSociety}
-        toggle={toggleDeleteSociety}
-        onSave={onDeleteSociety}
+        isOpen={isOpenDeleteSale}
+        toggle={toggleDeleteSales}
+        onSave={onDeleteRecipe}
         type="delete"
       />
     </>

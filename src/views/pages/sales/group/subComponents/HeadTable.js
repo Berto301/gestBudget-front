@@ -5,10 +5,10 @@ const HeadTable = () => {
   return (
     <thead className="thead-light">
       <tr>
-        <th scope="col">Society Name</th>
-        <th scope="col">Budget</th>
-        <th scope="col">Admin</th>
-        <th scope="col">Others</th>
+        <th scope="col">Sales name</th>
+        <th scope="col">Estimation per month</th>
+        <th scope="col">Description </th>
+        {/*<th scope="col">Others</th>*/}
         <th scope="col" />
       </tr>
     </thead>

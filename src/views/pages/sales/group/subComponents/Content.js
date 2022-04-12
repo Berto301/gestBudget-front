@@ -2,19 +2,22 @@
 
 import React, { useEffect } from "react";
 import { Row, Col } from "reactstrap";
-import { Input ,DropdownWithLabel} from "../../../../../components/componentsSystems";
-import { useRecipe } from "../../../../../hooks";
-import {FONT_AWESOME , COLORS} from '../../../../../_helpers/_constants'
+import {
+  Input,
+  DropdownWithLabel,
+} from "../../../../../components/componentsSystems";
+import { useSales } from "../../../../../hooks";
+import { FONT_AWESOME, COLORS } from "../../../../../_helpers/_constants";
 
 const Content = ({ passDataToParent, id }) => {
-  const { _getById, recipe } = useRecipe();
+  const { _getById, sale } = useSales();
   useEffect(() => {
     if (id) {
       _getById(id);
     }
   }, [id]);
 
-  const { name, description, estimation, icon , color} = recipe;
+  const { name, description, estimation, icon, color } = sale;
 
   return (
     <div className="pl-lg-4">
@@ -39,39 +42,38 @@ const Content = ({ passDataToParent, id }) => {
         </Col>
       </Row>
       <Row>
-          <Col lg="12">
-             <Input
-              name="estimation"
-              type="number"
-              label="Estimation per month (for all society)"
-              passData={passDataToParent}
-              value={estimation}
-            />
-          </Col>
-        </Row>
+        <Col lg="12">
+          <Input
+            name="estimation"
+            type="number"
+            label="Estimation per month (for all society)"
+            passData={passDataToParent}
+            value={estimation}
+          />
+        </Col>
+      </Row>
       <Row>
         <Col lg="6">
-           <DropdownWithLabel
+          <DropdownWithLabel
             name="icon"
-            label="Icon recipe"
+            label="Icon sales"
             lists={FONT_AWESOME}
             passData={passDataToParent}
-            withIcon = {true}
+            withIcon={true}
             value={icon || ""}
           />
         </Col>
         <Col lg="6">
-           <DropdownWithLabel
+          <DropdownWithLabel
             name="color"
-            label="Color recipe"
+            label="Color sales"
             lists={COLORS}
             passData={passDataToParent}
-            withcolor = {true}
+            withcolor={true}
             value={color || ""}
           />
         </Col>
       </Row>
-        
     </div>
   );
 };

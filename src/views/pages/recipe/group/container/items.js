@@ -6,8 +6,6 @@ import {
   DropdownItem,
   UncontrolledDropdown,
   DropdownToggle,
-  Media,
-  UncontrolledTooltip,
 } from "reactstrap";
 import ModalBase from "../../../../../components/Modals/Base";
 import Content from "../subComponents/Content";
@@ -21,7 +19,6 @@ const Items = ({ data }) => {
     color: colorProps,
     estimation: estimationProps,
     icon: iconProps,
-    bank: bankProps,
     _id: idRecipe,
   } = data;
 
