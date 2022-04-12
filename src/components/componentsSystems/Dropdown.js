@@ -4,7 +4,7 @@ import {
   Input,
 } from "reactstrap";
 
-const DropdownSystem = ({name,label,lists,passData,value:valueProps,objectLists }) => {
+const DropdownSystem = ({name,label,lists,passData,value:valueProps }) => {
   const [value,setValue] = useState("")
   const handleChange = (e)=>{
     const {value} = e.target
@@ -42,11 +42,6 @@ const DropdownSystem = ({name,label,lists,passData,value:valueProps,objectLists 
               }) :<option className="text-center">No item</option>
           }
 
-          {objectLists?.length ?
-              objectLists?.map((item,index)=>{
-                return<option className="text-center" value={item?._id} > {item?.name}</option>
-              }) :<option className="text-center">No item</option>
-          }
         </Input>
     </FormGroup>
 

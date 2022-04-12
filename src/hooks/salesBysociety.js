@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {SalesService} from "../services/";
+import {SalesBySociety} from "../services/";
 import { useNotification } from "./index";
 
-export function useSales() {
+export function useSalesBySociety() {
   const [sales, setSales] = useState([]);
   const [sale, setSale] = useState({});
   const [closeModal,setCloseModal] = useState(false)
@@ -10,7 +10,7 @@ export function useSales() {
 
   const _getById = async (id) => {
     if (id) {
-      const response = await SalesService.getById(id);
+      const response = await SalesBySociety.getById(id);
       if (response?.data?.object) {
         setSale(response?.data?.object)
         //
@@ -20,7 +20,7 @@ export function useSales() {
 
   const _getByGroupId = async (id)=>{
      if (id) {
-      const response = await SalesService.getByGroupId(id);
+      const response = await SalesBySociety.getByGroupId(id);
       if (response?.data?.object) {
         setSales(response?.data?.object)
         //
@@ -30,7 +30,7 @@ export function useSales() {
 
   const _update = async (data) => {
     if(data?._id){
-      const saleUpdated =  await SalesService.updateById(data)
+      const saleUpdated =  await SalesBySociety.updateById(data)
       if(saleUpdated?.data){
          const {success,message="",object={}} = saleUpdated?.data
           if(!success) showError(message)
@@ -48,7 +48,7 @@ export function useSales() {
 
   const _create = async (data) =>{
 
-    const saleCreated =  await SalesService.insert(data)
+    const saleCreated =  await SalesBySociety.insert(data)
     if(saleCreated?.data){
        const {success,message="",object={}} = saleCreated?.data
         if(!success) showError(message)
@@ -66,7 +66,7 @@ export function useSales() {
 
   const _delete = async (id)=>{
      if(id){
-      const saleDeleted = await SalesService.deleteById(id)
+      const saleDeleted = await SalesBySociety.deleteById(id)
       if(saleDeleted?.data){
         const {success,message,object={}} = saleDeleted?.data
         if(!success) showError(message)

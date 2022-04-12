@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {RecipeService} from "../services/";
+import {RecipeBySocietyService} from "../services/";
 import { useNotification } from "./index";
 
-export function useRecipe() {
+export function useRecipeBySociety() {
   const [recipes, setRecipes] = useState([]);
   const [recipe, setRecipe] = useState({});
   const [closeModal,setCloseModal] = useState(false)
@@ -10,7 +10,7 @@ export function useRecipe() {
 
   const _getById = async (id) => {
     if (id) {
-      const response = await RecipeService.getById(id);
+      const response = await RecipeBySocietyService.getById(id);
       if (response?.data?.object) {
         setRecipe(response?.data?.object)
         //
@@ -20,7 +20,7 @@ export function useRecipe() {
 
   const _getByGroupId = async (id)=>{
      if (id) {
-      const response = await RecipeService.getByGroupId(id);
+      const response = await RecipeBySocietyService.getByGroupId(id);
       if (response?.data?.object) {
         setRecipes(response?.data?.object)
         //
@@ -30,7 +30,7 @@ export function useRecipe() {
 
   const _update = async (data) => {
     if(data?._id){
-      const recipeCreated =  await RecipeService.updateById(data)
+      const recipeCreated =  await RecipeBySocietyService.updateById(data)
       if(recipeCreated?.data){
          const {success,message="",object={}} = recipeCreated?.data
           if(!success) showError(message)
@@ -48,7 +48,7 @@ export function useRecipe() {
 
   const _create = async (data) =>{
 
-    const recipeCreated =  await RecipeService.insert(data)
+    const recipeCreated =  await RecipeBySocietyService.insert(data)
     if(recipeCreated?.data){
        const {success,message="",object={}} = recipeCreated?.data
         if(!success) showError(message)
@@ -66,7 +66,7 @@ export function useRecipe() {
 
   const _delete = async (id)=>{
      if(id){
-      const recipeDeleted = await RecipeService.deleteById(id)
+      const recipeDeleted = await RecipeBySocietyService.deleteById(id)
       if(recipeDeleted?.data){
         const {success,message,object={}} = recipeDeleted?.data
         if(!success) showError(message)

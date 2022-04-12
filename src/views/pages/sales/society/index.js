@@ -30,12 +30,13 @@ const Index = () => {
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
         <Header
           parentClass="pb-2 pt-2"
+          onSave={onSave}
+          closeModal={closeModal}
+          setCloseModal={setCloseModal}
           content={
             <Content
               passDataToParent={getSalesData}
-              onSave={onSave}
-              closeModal={closeModal}
-              setCloseModal={setCloseModal}
+             
             />
           }
         />
