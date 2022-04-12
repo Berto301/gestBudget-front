@@ -13,6 +13,12 @@ getByGroupId(id){
       return err;
     });
  }
+ getBySociety(id){
+   return http.get(`${this.path}/society/${id}`).catch((err) => {
+      console.error("Failed to fetch sales ", err);
+      return err;
+    });
+ }
 }
 
 export default new SalesBySocietyServices();

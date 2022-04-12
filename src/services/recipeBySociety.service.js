@@ -13,6 +13,13 @@ getByGroupId(id){
       return err;
     });
  }
+
+ getBySociety(id){
+   return http.get(`${this.path}/society/${id}`).catch((err) => {
+      console.error("Failed to fetch recipes ", err);
+      return err;
+    });
+ }
 }
 
 export default new RecipeBySocietyServices();

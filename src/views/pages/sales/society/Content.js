@@ -1,6 +1,6 @@
 /*eslint react-hooks/exhaustive-deps:off*/
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col } from "reactstrap";
 import {
   Input,
@@ -9,25 +9,33 @@ import {
 import { useSales } from "../../../../hooks";
 
 const Content = ({ passDataToParent, id }) => {
+  const [ estimation , setEstimation] = useState("")
+
   const { _getById, sale,sales } = useSales();
+
   useEffect(() => {
     if (id) {
       _getById(id);
     }
   }, [id]);
 
-  const { name, realValue, estimation, date } = sale;
+  const getEstimation = (data) => {
+    setEstimation(data)
+  }
+
+  const { name, realValue, date , description} = sale;
 
   return (
     <div className="pl-lg-4">
       <Row>
         <Col lg="6">
           <SpecificDropdown
-            name="_id"
+            name="_idSelected"
             label="Sales"
             passData={passDataToParent}
             value={name || ""}
             isRecipe={false}
+            passEstimation={getEstimation}
           />
         </Col>
         <Col lg="6">
@@ -59,6 +67,18 @@ const Content = ({ passDataToParent, id }) => {
             passData={passDataToParent}
             value={estimation}
             disabled={true}
+          />
+        </Col>
+      </Row>
+
+      <Row>
+        <Col lg="12">
+          <Input
+            name="description"
+            type="textarea"
+            label="Details"
+            passData={passDataToParent}
+            value={description}
           />
         </Col>
       </Row>

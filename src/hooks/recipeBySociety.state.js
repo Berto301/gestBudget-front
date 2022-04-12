@@ -28,6 +28,16 @@ export function useRecipeBySociety() {
     }
   }
 
+  const _getBySocietyId = async (id)=>{
+     if (id) {
+      const response = await RecipeBySocietyService.getBySociety(id);
+      if (response?.data?.object) {
+        setRecipes(response?.data?.object)
+        //
+      } 
+    }
+  }
+
   const _update = async (data) => {
     if(data?._id){
       const recipeCreated =  await RecipeBySocietyService.updateById(data)
@@ -86,6 +96,7 @@ export function useRecipeBySociety() {
     _create,
     _delete,
     _getByGroupId,
+    _getBySocietyId,
     recipes,
     recipe,
     closeModal,

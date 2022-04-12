@@ -27,6 +27,15 @@ export function useSalesBySociety() {
       } 
     }
   }
+  const _getBySocietyId = async (id)=>{
+     if (id) {
+      const response = await SalesBySociety.getBySociety(id);
+      if (response?.data?.object) {
+        setSales(response?.data?.object)
+        //
+      } 
+    }
+  }
 
   const _update = async (data) => {
     if(data?._id){
@@ -86,6 +95,7 @@ export function useSalesBySociety() {
     _create,
     _delete,
     _getByGroupId,
+    _getBySocietyId,
     sales,
     sale,
     closeModal,
