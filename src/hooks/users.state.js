@@ -2,6 +2,7 @@ import { useState } from "react";
 import { UsersService } from "../services/";
 import { useNotification } from "./index";
 import { useHistory } from "react-router-dom";
+//import { useDispatch } from "react-redux";
 
 export function useUser() {
   let noAuth = false 
@@ -9,6 +10,7 @@ export function useUser() {
   const { showError, showSuccess } = useNotification();
   const [closeModal,setCloseModal] = useState(false)
   const history = useHistory();
+  //const reduxDispatch = useDispatch()
 
   const register = async (data) => {
     if(data?.noAuth){
@@ -40,12 +42,16 @@ export function useUser() {
       if (!success && !users) return showError(message);
       if (token && users?._id) {
         delete users.password;
-        localStorage.setItem("users", users);
+        // localStorage.setItem("users", users);
         localStorage.setItem("userId", users?._id);
         if (users?.groupId) localStorage.setItem("groupId", users?.groupId);
         if (users?.societyId)
           localStorage.setItem("societyId", users?.societyId);
         history.push("/admin/dashboard");
+        // return reduxDispatch({
+        //   type:"STANDARD_NOTIFICATION",
+        //   payload:null
+        // })
       }
     } else {
       showError("Connexion failed");

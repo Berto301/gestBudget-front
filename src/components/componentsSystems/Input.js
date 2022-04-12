@@ -5,7 +5,8 @@ import {
   Form
 } from "reactstrap";
 
-const InputSystem = ({name,label,passData,type,value:valueProps}) => {
+const InputSystem = ({name,label,passData,type,value:valueProps ,disabled}) => {
+  
   const [value,setValue]=useState("")
   const onChange = (e)=>{
     e.preventDefault()
@@ -21,7 +22,6 @@ const InputSystem = ({name,label,passData,type,value:valueProps}) => {
   // const onBlur = (e)=>{
   //   passData({[name]:value})
   // }
-
 
   return (
     <Form autoComplete="off">
@@ -42,6 +42,7 @@ const InputSystem = ({name,label,passData,type,value:valueProps}) => {
         onChange={onChange}
         value={value}
         //onMouseLeave={onBlur}
+        readOnly={disabled}
       />    
     </FormGroup>
     </Form>

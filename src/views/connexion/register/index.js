@@ -16,16 +16,20 @@ const Register = ({ showError }) => {
     password: "",
     password_check: "",
   });
+
   const [dataGroups, setDataGroups] = useState({
     name: "",
     areaActivity: "",
     phone: "",
     email: "",
   });
+
   const { register } = useUser(); /* Custom Hooks [src/hooks] */
+
   const getUserData = (params) => {
     setDataUsers(params);
   };
+
   const getGroupData = (params) => {
     console.log(params);
     setDataGroups(params);
@@ -49,6 +53,8 @@ const Register = ({ showError }) => {
       password,
       password_check,
     ];
+
+   
 
     let isFormValid = REQUIRED_FIELD.every((item) => Boolean(item));
 

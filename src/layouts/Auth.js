@@ -1,5 +1,5 @@
 /*eslint react-hooks/exhaustive-deps:off*/
-import React , {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container, Row, Col } from "reactstrap";
@@ -8,9 +8,9 @@ import { Container, Row, Col } from "reactstrap";
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
 import StandardNotification from "components/Warnings/standardNotification";
-import {authRoutes} from "../routes/main.js";
+import { authRoutes } from "../routes/main.js";
 
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -19,14 +19,14 @@ const Auth = (props) => {
   let standardNotification = useSelector((state) => state.standardNotification);
   const mainContent = React.useRef(null);
   const location = useLocation();
-  useEffect(()=>{
-    // Needde on unmount 
-    return () => reduxDispatch({
-      type:"STANDARD_NOTIFICATION",
-      payload:null
-    })
-  },[])
-  
+  useEffect(() => {
+    // Needde on unmount
+    return () =>
+      reduxDispatch({
+        type: "STANDARD_NOTIFICATION",
+        payload: null,
+      });
+  }, []);
 
   /*function to active notification*/
   const toastStandardNotification = (message, type) => {
@@ -77,7 +77,7 @@ const Auth = (props) => {
     <>
       <div className="main-content" ref={mainContent}>
         <AuthNavbar />
-      <ToastContainer pauseOnHover />
+        <ToastContainer pauseOnHover />
         <div className="header bg-gradient-info py-7 py-lg-8">
           <Container>
             <div className="header-body text-center mb-7">
@@ -85,7 +85,8 @@ const Auth = (props) => {
                 <Col lg="5" md="6">
                   <h1 className="text-white">Welcome to B-Gest!</h1>
                   <p className="text-lead text-light">
-                    It's a website to group society and manage their own budget (recipe / expense).
+                    It's a website to group society and manage their own budget
+                    (recipe / expense).
                   </p>
                 </Col>
               </Row>

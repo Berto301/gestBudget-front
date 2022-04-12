@@ -1,17 +1,17 @@
-import {useState,useEffect} from 'react'
+import { useState, useEffect } from "react";
 import { Button, Card, CardBody, Row, Col, CardFooter } from "reactstrap";
 import { Input } from "../../../../components/componentsSystems";
-import {useGroup} from '../../../../hooks'
+import { useGroup } from "../../../../hooks";
 
-const AdminInfo = ({groups}) => {
-  const {_update} = useGroup()
-  const [groupData,setGroupData] = useState({
-    name:"",
-    activityArea:"",
-    email:"",
-    phone:""
-  })
-  
+const GroupInfo = ({ groups, isAdmin }) => {
+  const { _update } = useGroup();
+  const [groupData, setGroupData] = useState({
+    name: "",
+    activityArea: "",
+    email: "",
+    phone: "",
+  });
+
   const getData = (updatedAttrs) => {
     setGroupData((temp) => ({
       ...temp,
@@ -19,22 +19,17 @@ const AdminInfo = ({groups}) => {
     }));
   };
 
-  useEffect(()=>{
-    if(groups){
-      setGroupData(groups)
+  useEffect(() => {
+    if (groups) {
+      setGroupData(groups);
     }
-  },[groups])
+  }, [groups]);
 
-  const OnUpdate = ()=>{
-    _update(groupData)
-  }
+  const OnUpdate = () => {
+    _update(groupData);
+  };
 
-  const {
-    name,
-    activityArea,
-    email,
-    phone
-  } = groupData
+  const { name, activityArea, email, phone } = groupData;
   return (
     <>
       <Card className="bg-secondary shadow">
@@ -49,6 +44,7 @@ const AdminInfo = ({groups}) => {
                   label="Group name"
                   passData={getData}
                   value={name}
+                  disabled={isAdmin}
                 />
               </Col>
               <Col lg="6">
@@ -58,6 +54,7 @@ const AdminInfo = ({groups}) => {
                   label="Email"
                   passData={getData}
                   value={email}
+                  disabled={isAdmin}
                 />
               </Col>
             </Row>
@@ -69,6 +66,7 @@ const AdminInfo = ({groups}) => {
                   label="Phone"
                   passData={getData}
                   value={phone}
+                  disabled={isAdmin}
                 />
               </Col>
               <Col lg="6">
@@ -78,27 +76,32 @@ const AdminInfo = ({groups}) => {
                   label="Activy Area"
                   passData={getData}
                   value={activityArea}
+                  disabled={isAdmin}
                 />
               </Col>
             </Row>
           </div>
           <hr className="my-4" />
         </CardBody>
-        <CardFooter className="bg-white border-0">
-          <Row className="align-items-center">
-            <Button
-              color="primary"
-              href="#pablo"
-              onClick={OnUpdate}
-              size="sm"
-            >
-              Update
-            </Button>
-          </Row>
-        </CardFooter>
+        {!isAdmin ? (
+          <CardFooter className="bg-white border-0">
+            <Row className="align-items-center">
+              <Button
+                color="primary"
+                href="#pablo"
+                onClick={OnUpdate}
+                size="sm"
+              >
+                Update
+              </Button>
+            </Row>
+          </CardFooter>
+        ) : (
+          ""
+        )}
       </Card>
     </>
   );
 };
 
-export default AdminInfo;
+export default GroupInfo;
