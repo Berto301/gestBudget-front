@@ -2,15 +2,12 @@
 
 const Items = ({sales}) => {
   const {
-    realValue:realValueProps,
-    description:descriptionProps,
-    date:dateProps,
-    salesId:{
-      color,
-      name,
-      icon,
-      estimation
-    }
+    color,
+    count,
+    name,
+    estimation,
+    icon,
+    realValue:realValueProps
   } = sales
 
   const calculatePercent = ()=>{
@@ -30,7 +27,7 @@ const Items = ({sales}) => {
           </div>
           <div className="d-flex flex-column content-tile">
             <div className="sales_title">{name}</div>
-            <div className="content_value">{calculatePercent()}% - 46 transactions</div>
+            <div className="content_value">{calculatePercent()}% -  {count} {count > 1 ? "transactions":"transaction"}</div>
           </div>
         </div>
         <div className="sales_value">
