@@ -1,3 +1,4 @@
+/*eslint react-hooks/exhaustive-deps:off*/
 // reactstrap components
 import { useState, useEffect } from "react";
 import { Container } from "reactstrap";

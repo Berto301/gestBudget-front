@@ -11,7 +11,7 @@ import { useSales } from "../../../../hooks";
 const Content = ({ passDataToParent, id }) => {
   const [ estimation , setEstimation] = useState("")
 
-  const { _getById, sale,sales } = useSales();
+  const { _getById, sale } = useSales();
 
   useEffect(() => {
     if (id) {

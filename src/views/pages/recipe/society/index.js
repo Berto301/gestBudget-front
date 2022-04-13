@@ -1,4 +1,4 @@
-// reactstrap components
+/*eslint react-hooks/exhaustive-deps:off*/
 import { useState, useEffect } from "react";
 import { Container } from "reactstrap";
 import Header from "../../../../components/Headers/HeaderBase";

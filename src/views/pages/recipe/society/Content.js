@@ -6,12 +6,12 @@ import {
   Input,
   SpecificDropdown
 } from "../../../../components/componentsSystems";
-import { useSales } from "../../../../hooks";
+import { useRecipe } from "../../../../hooks";
 
 const Content = ({ passDataToParent, id }) => {
   const [ estimation , setEstimation] = useState("")
 
-  const { _getById, sale,sales } = useSales();
+  const { _getById, recipe } = useRecipe();
 
   useEffect(() => {
     if (id) {
@@ -23,7 +23,7 @@ const Content = ({ passDataToParent, id }) => {
     setEstimation(data)
   }
 
-  const { name, realValue, date , description} = sale;
+  const { name, realValue, date , description} = recipe;
 
   return (
     <div className="pl-lg-4">

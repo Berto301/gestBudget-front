@@ -1,124 +1,116 @@
-import {useEffect,useState} from 'react'
-import {
-  FormGroup,
-  Input,
-} from "reactstrap";
-import {
-useRecipe,
-useSales,
-useNotification
-} from '../../hooks'
+/*eslint react-hooks/exhaustive-deps:off*/
+import { useEffect, useState } from "react";
+import { FormGroup, Input, Fade, Card, CardBody } from "reactstrap";
+import { useRecipe, useSales } from "../../hooks";
 
-import { socket } from "../../_helpers/socket"; 
+import { socket } from "../../_helpers/socket";
 
-const DropdownSystem = ({name,label,passData,value:valueProps ,isRecipe , passEstimation }) => {
-  const [value,setValue] = useState("")
-  const [objectLists,setObjectsLists] = useState([])
-  const {_getByGroupId,recipes , _getById , recipe} = useRecipe()
-  const {_getByGroupId:getSalesGroupById , sales , _getById:getById ,sale} = useSales()
-  const {showError} = useNotification()
+const DropdownSystem = ({
+  name,
+  label,
+  passData,
+  value: valueProps,
+  isRecipe,
+  passEstimation,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [value, setValue] = useState("");
+  const [objectLists, setObjectsLists] = useState([]);
+  const { _getByGroupId, recipes, _getById } = useRecipe();
+  const {
+    _getByGroupId: getSalesGroupById,
+    sales,
+    _getById: getById,
+  } = useSales();
 
-  useEffect(()=>{
-    didMount()
+  useEffect(() => {
+    didMount();
     socket.on("reload_information", async (groupId) => {
-        if (localStorage.getItem("groupId") === groupId) {
-          didMount();
-        }
-      });
-  },[])
-  const didMount = async ()=>{
+      if (localStorage.getItem("groupId") === groupId) {
+        didMount();
+      }
+    });
+  }, []);
+  const didMount = async () => {
     const groupId = localStorage.getItem("groupId");
     if (groupId) {
-        if(isRecipe){
-            await _getByGroupId(groupId)
-           
-        }else{
-            await getSalesGroupById(groupId)
-        }
-    };
-  }
-  
-  const handleChange = async (e)=>{
-    /*There is a bug on passing data to his parent :/*/
-    const {value} = e.target
-    console.log(value)
-    if(value){
-      if(isRecipe){
-        await _getById(value)
-        if(recipe){
-           passData({
-           _idSelected:recipe?._id
-         })
-         passEstimation(recipe?.estimation)
-         setValue(value)
-        }
-      }else{
-        if(sale){
-            await getById(value)
-         passData({
-           _idSelected:sale?._id
-         })
-         passEstimation(sale?.estimation)
-          setValue(value)
-        }
+      if (isRecipe) {
+        await _getByGroupId(groupId);
+      } else {
+        await getSalesGroupById(groupId);
       }
-      
-     // const {estimation , _id} = reci
-    }else{
-      showError("Please select a value no empty")
     }
-     
-  }
+  };
 
+  useEffect(() => {
+    if (recipes?.length) setObjectsLists(recipes);
+
+    if (sales?.length) setObjectsLists(sales);
+  }, [recipes, sales]);
+
+  useEffect(() => {
+    if (valueProps) {
+      if (isRecipe) {
+        _getById(valueProps);
+      } else {
+        getById(valueProps);
+      }
+    }
+  }, [valueProps, isRecipe]);
+ 
+  //const objectSelected = sale || recipe || {};
   
-
-  useEffect(()=>{
-    if(recipes?.length)  setObjectsLists(recipes)
-
-    if(sales?.length)  setObjectsLists(sales)
-  },[recipes,sales])
-
-
-  useEffect(()=>{
-    if(valueProps){
-        if(isRecipe){
-            _getById(valueProps)
-        }else{
-            getById(valueProps)
-        }
-    }
-  },[valueProps,isRecipe])
-  const arrangeLists = (data)=>{
-    const newLists = [{_id:null , name:"" , estimation : 0}]
-    let arrayCombined = []
-    if(data?.length) arrayCombined =newLists.concat([...data])
-     return arrayCombined
-  }
-  const objectSelected = sale || recipe || {}
-  const newLists = objectLists?.length ? arrangeLists(objectLists) : []
+  const onClick = () => {
+    setIsOpen(!isOpen);
+  };
+  const onClickItem = (item) => {
+    setValue(item?.name);
+    passEstimation(item?.estimation);
+    passData({
+      _idSelected: item?._id,
+    });
+    setIsOpen(!isOpen);
+  };
   return (
-    
-    <FormGroup >
-        <label for="exampleSelect">
-           {label}
-        </label>
-        <Input
-          id="exampleSelect"
-          name={name}
-          type="select"
-          onChange={handleChange}
-          defaultValue={""}
-          autoComplete="new-text"
-          value={value}
-        >
-          {newLists?.length ?
-              newLists?.map((item,index)=>{
-                return<option className="text-center" key={item?._id} value={item?._id} > {item?.name}</option>
-              }) :<option className="text-center">No item</option>
-          }
-        </Input>
+    <FormGroup>
+      <label for="exampleSelect">{label}</label>
+      <Input
+        id="exampleSelect"
+        name={name}
+        type="input"
+        autoComplete="new-text"
+        onClick={onClick}
+        value={value}
+      />
+      <Fade in={isOpen} className="mt-2">
+        <Card className="content_card">
+          <CardBody className="no-padding hidden_with_scroll">
+            {objectLists?.length ? (
+              objectLists?.map((item, index) => {
+                return (
+                  <div
+                    key={item?._id}
+                    className="d-flex list position-relative"
+                    onClick={() => onClickItem(item)}
+                  >
+                    <div className="content_custom_radio">
+                      <label
+                        className={`custom_radio ${
+                          value === item?.name ? "active" : ""
+                        }`}
+                      ></label>
+                      {item?.name}
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className="text-center">No item</div>
+            )}
+          </CardBody>
+        </Card>
+      </Fade>
     </FormGroup>
-
   );
 };
 
