@@ -4,6 +4,8 @@ import { useNotification } from "./index";
 import { useHistory } from "react-router-dom";
 
 export function useGroup() {
+
+  const [dataStatics,setDataStatics] = useState({})
   const [groups, setGroups] = useState({});
   const { showError, showSuccess } = useNotification();
   const history = useHistory();
@@ -44,9 +46,20 @@ export function useGroup() {
     }
   };
 
+  const getStatistic = async (id)=>{
+    if (id) {
+      const response = await GroupsService.getStatistics(id);
+      if (response?.data?.object) {
+        setDataStatics(response?.data?.object)
+      }
+    }
+  }
+
   return {
     _getById,
     _update,
     groups,
+    dataStatics,
+    getStatistic
   };
 }

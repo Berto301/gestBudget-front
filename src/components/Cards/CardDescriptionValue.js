@@ -6,7 +6,7 @@ const CardDescriptionValue = (
     name,
     value,
     date,
-    percent
+    percent,
   }
 ) => {
   return (
@@ -26,8 +26,8 @@ const CardDescriptionValue = (
           </Col>
         </Row>
         <p className="mt-3 mb-0 text-muted text-sm">
-          <span className="text-success mr-2">
-            <i className="fa fa-arrow-up" /> {percent}
+          <span className={`text-${percent >= 50 ? "success" : "danger"} mr-2`}>
+            <i className={`fa fa-arrow-${percent >=50  ? "up" : "down"}`} /> {percent}%
           </span>{" "}
           <span className="text-nowrap">{date}</span>
         </p>

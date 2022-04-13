@@ -11,6 +11,12 @@ class SocietyService extends BaseService {
       return err;
     });
  }
+ getStatistics(id){
+    return http.get(`${this.path}/statistic/${id}`).catch((err) => {
+      console.error("Failed to fetch society statistics ", err);
+      return err;
+    });
+ }
 
 }
 

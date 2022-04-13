@@ -1,17 +1,40 @@
+import {useEffect,useState} from 'react'
 import { Doughnut } from "react-chartjs-2";
 // reactstrap components
 import { Card, CardBody, Container, Row, Col } from "reactstrap";
-
+import {useSociety} from '../../../../hooks'
 import Header from "../../../../components/Headers/HeaderDashboard";
 import CardDashboard from "../../../../components/Cards/CardDashboard";
+import { socket } from "../../../../_helpers/socket";
 
 const Index = (props) => {
+  const {getStatistic , dataStatics} = useSociety()
+  const  [lastActivity , setLastActivity] = useState(new Date()) 
+  useEffect(() => {
+    async function didMount() {
+      await getStatistic(localStorage.getItem("societyId"));
+    }
+    /**Real time by society */
+    socket.on("reload_information_society", async (societyId) => {
+      if (localStorage.getItem("societyId") === societyId) {
+        await getStatistic(localStorage.getItem("societyId"));
+      }
+    });
+
+    didMount();
+
+  }, []);
+
+  const {sales,recipes} = dataStatics
+  console.log(sales,recipes)
+
+
   const dataBySales = {
     labels: ["Real Sales", "Prevision"],
     datasets: [
       {
-        data: [400, 600],
-        backgroundColor: ["#5e72e4", "#f2f2f2"],
+        data: [ sales?.[0]?.realValue || 0 , sales?.[0]?.sale||0],
+        backgroundColor: ["#f5365c", "#ffd600"],
       },
     ],
   };
@@ -20,8 +43,8 @@ const Index = (props) => {
     labels: ["Real Recipes", "Prevision"],
     datasets: [
       {
-        data: [200, 100],
-        backgroundColor: ["#fe72e4", "#e2e2e2"],
+        data:  [recipes?.[0]?.realValue || 0 , recipes?.[0]?.recipe||0],
+        backgroundColor: ["#fb6340", "#11cdef"],
       },
     ],
   };
@@ -33,11 +56,14 @@ const Index = (props) => {
       },
     },
   };
+  const getLastActivity = (date)=>{
+    setLastActivity(date)
+  }
 
   return (
     <>
-      <Header />
-      <CardDashboard />
+      <Header data={dataStatics} passLastActivity={getLastActivity}/>
+      <CardDashboard sales={sales} lastActivity={lastActivity}/>
       {/* Page content */}
       <Container className="content-global bg-gradient-info pt-2" fluid>
         <Row>

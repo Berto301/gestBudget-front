@@ -7,6 +7,7 @@ export function useSociety() {
   const [_society,setSociety] = useState({})
   const [closeModal,setCloseModal] = useState(false)
   const { showError, showSuccess } = useNotification();
+  const [dataStatics,setDataStatics] = useState({})
 
   const getByGroupId = async (id) => {
     if (id) {
@@ -63,17 +64,29 @@ const _update = async (data) => {
       }
     }
   }
+
+  const getStatistic = async (id)=>{
+    if (id) {
+      const response = await SocietyService.getStatistics(id);
+      if (response?.data?.object) {
+        
+        setDataStatics(response?.data?.object)
+      }
+    }
+  }
   
 
   return {
     getByGroupId,
+    getStatistic,
     _update,
     _getById,
     societyLists,
     _society,
     closeModal,
     setCloseModal,
-    _delete
+    _delete,
+    dataStatics
   };
 }
 

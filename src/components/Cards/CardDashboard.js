@@ -5,11 +5,11 @@ import CardDescriptionValue from "./CardDescriptionValue";
 import { formatDistanceToNow } from "date-fns";
 import * as locales from "react-date-range/dist/locale";
 
-const CardDashboard = () => {
+const CardDashboard = ({sales , lastActivity}) => {
   const toKnowLastActivity = (date) => {
     let lastModified = "";
     if (typeof date !== "undefined") {
-      lastModified = formatDistanceToNow(new Date(date), {
+      lastModified = formatDistanceToNow(date, {
         addSuffix: true,
         locale: locales["en"],
       });
@@ -22,9 +22,9 @@ const CardDashboard = () => {
     <Container className="header pb-2 pt-2 bg-gradient-info" fluid>
       <CardDescriptionValue
         name="BUDGET SPENT"
-        value="12000Ar / 50000Ar"
-        date={toKnowLastActivity(new Date())}
-        percent="12"
+        value={`${sales?.[0]?.realValue || 0} Ar/${sales?.[0]?.sale || 0} Ar`}
+        date={toKnowLastActivity(lastActivity)}
+        percent={(sales?.[0]?.realValue/sales?.[0]?.sale ) * 100 || 100}
       />
     </Container>
   );
