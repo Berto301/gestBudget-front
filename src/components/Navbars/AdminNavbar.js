@@ -11,9 +11,11 @@ import {
   Container,
   Media,
 } from "reactstrap";
+//import {clearReduxDispatch} from '../../_helpers/_functions'
 
 const AdminNavbar = ({usersConnected:{name,firstname,_id},brandText}) => {
   const onLogout =()=>{
+   // clearReduxDispatch()
     localStorage.clear();
   }
   return (

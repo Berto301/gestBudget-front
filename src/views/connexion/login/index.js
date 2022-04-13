@@ -12,6 +12,7 @@ import { InputGroup } from "../../../components/componentsSystems";
 import { Link } from "react-router-dom";
 import { useUser } from "../../../hooks";
 import { withNotification } from "../../../hooks/notification.state";
+//import {clearReduxDispatch} from '../../../_helpers/_functions'
 
 const Login = ({ showError }) => {
   const [password,setPassword] = useState("")
@@ -27,6 +28,7 @@ const Login = ({ showError }) => {
   const onLogin = ()=>{
     if(!password || !email) return showError("Please complete the required fields");
     login(email,password)
+   // clearReduxDispatch()
   }
   return (
     <>
