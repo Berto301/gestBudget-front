@@ -11,11 +11,11 @@ import {
   Container,
   Media,
 } from "reactstrap";
-//import {clearReduxDispatch} from '../../_helpers/_functions'
+import withNotification from "../../hooks/notification.state";
 
-const AdminNavbar = ({usersConnected:{name,firstname,_id},brandText}) => {
+const AdminNavbar = ({usersConnected:{name,firstname,_id},brandText , clearReduxDispatch}) => {
   const onLogout =()=>{
-   // clearReduxDispatch()
+   clearReduxDispatch()
     localStorage.clear();
   }
   return (
@@ -67,4 +67,4 @@ const AdminNavbar = ({usersConnected:{name,firstname,_id},brandText}) => {
   );
 };
 
-export default AdminNavbar;
+export default withNotification(AdminNavbar);

@@ -87,7 +87,7 @@ const Sidebar = (props) => {
               alt={logo.imgAlt}
               className="navbar-brand-img"
               src={logo.imgSrc}
-            />
+            /> <h1>B-Gest</h1>
           </NavbarBrand>
         ) : null}
         {/* User */}

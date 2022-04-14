@@ -12,6 +12,8 @@ const DropdownSystem = ({
   value: valueProps,
   isRecipe,
   passEstimation,
+  onSubmit , 
+  required
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -71,9 +73,12 @@ const DropdownSystem = ({
     });
     setIsOpen(!isOpen);
   };
+  const testError = ()=>{
+    return !value && onSubmit && required
+  }
   return (
     <FormGroup>
-      <label for="exampleSelect">{label}</label>
+      <label for="exampleSelect" className={` position-relative ${testError() ? "error_label":""}`} >{label}</label>
       <Input
         id="exampleSelect"
         name={name}
@@ -81,10 +86,12 @@ const DropdownSystem = ({
         autoComplete="new-text"
         onClick={onClick}
         value={value}
+        //invalid={testError()}
+        className={testError() ? "field_invalid":""}
       />
-      <Fade in={isOpen} className="mt-2">
-        <Card className="content_card">
-          <CardBody className="no-padding hidden_with_scroll">
+      <Fade in={isOpen} className="mt-2 position-absolute w-100">
+        <Card className="content_card fade_content ">
+          <CardBody className="no-padding hidden_with_scroll ">
             {objectLists?.length ? (
               objectLists?.map((item, index) => {
                 return (

@@ -17,21 +17,30 @@ const useNotification = () => {
   const showSuccess = (message) => {
     setNotificationSuccess(dispatch,message);
   }
+  const clearReduxDispatch = () => {
+    dispatch({
+      type: "STANDARD_NOTIFICATION",
+      payload: null,
+    });
+  };
 
   return {
     showError,
-    showSuccess
+    showSuccess,
+    clearReduxDispatch
   };
 }
 
+
 /**HOC : to wrap all components who needed notification */
 const withNotification = WrappedComponent => props => { 
-  const {showSuccess, showError} = useNotification();
+  const {showSuccess, showError,clearReduxDispatch} = useNotification();
   return (
     <WrappedComponent
       {...props}
       showError={showError}
       showSuccess={showSuccess}
+      clearReduxDispatch={clearReduxDispatch}
     />
   );
 };

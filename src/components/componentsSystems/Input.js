@@ -5,7 +5,7 @@ import {
   Form
 } from "reactstrap";
 
-const InputSystem = ({name,label,passData,type,value:valueProps ,disabled}) => {
+const InputSystem = ({name,label,passData,type,value:valueProps ,disabled , required , onSubmit}) => {
   
   const [value,setValue]=useState("")
   const onChange = (e)=>{
@@ -22,18 +22,19 @@ const InputSystem = ({name,label,passData,type,value:valueProps ,disabled}) => {
   // const onBlur = (e)=>{
   //   passData({[name]:value})
   // }
-
+  const testError = ()=>{
+    return !value && onSubmit && required
+  }
   return (
     <Form autoComplete="off">
     <FormGroup>
       <label
-        className="form-control-label"
         htmlFor={`input-last-${name}`}
+        className={` form-control-label ${testError() ? "error_label":""}`}
       >
         {label}
       </label>
       <Input
-        className="form-control-alternative"
         id={`input-last-${name}`}
         placeholder={label}
         type={type}
@@ -43,6 +44,8 @@ const InputSystem = ({name,label,passData,type,value:valueProps ,disabled}) => {
         value={value}
         //onMouseLeave={onBlur}
         readOnly={disabled}
+       // invalid={testError()}
+        className={` form-control-alternative ${testError() ? "field_invalid":""}`}
       />    
     </FormGroup>
     </Form>

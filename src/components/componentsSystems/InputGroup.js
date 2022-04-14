@@ -8,7 +8,7 @@ import {
   Form
 } from "reactstrap";
 
-const InputGroupSystem = ({name,label,passData,autoComplete,icon,type}) => {
+const InputGroupSystem = ({name,label,passData,autoComplete,icon,type , onSubmit , required}) => {
   const [value,setValue]=useState("")
   const onChange = (e)=>{
     e.preventDefault()
@@ -19,11 +19,15 @@ const InputGroupSystem = ({name,label,passData,autoComplete,icon,type}) => {
   // const onBlur = (e)=>{
   //   passData({[name]:value})
   // }
+  const testError = ()=>{
+    return !value && onSubmit && required
+  }
+  console.log(testError())
   return (
     <Form autoComplete="off">
     <FormGroup >
       <label
-        className="form-control-label"
+        className={` form-control-label ${testError() ? "error_label":""}`}
         htmlFor={`input-last-${name}`}
       >
         {label}
@@ -35,7 +39,7 @@ const InputGroupSystem = ({name,label,passData,autoComplete,icon,type}) => {
           </InputGroupText>
         </InputGroupAddon>
       <Input
-        className="form-control-alternative"
+        className={` form-control-alternative ${testError() ? "field_invalid":""}`}
         id={`input-last-${name}`}
         placeholder={label}
         type={type}
@@ -44,6 +48,7 @@ const InputGroupSystem = ({name,label,passData,autoComplete,icon,type}) => {
         onChange={onChange}
         value={value}
         autoComplete={autoComplete}
+        //invalid={testError()}
        // onMouseLeave={onBlur} // I'd like to passData onMouseLeave but It doesn't work , it's the best way for performing application 
       />  
       </InputGroup> 

@@ -14,9 +14,10 @@ import { useUser } from "../../../hooks";
 import { withNotification } from "../../../hooks/notification.state";
 //import {clearReduxDispatch} from '../../../_helpers/_functions'
 
-const Login = ({ showError }) => {
+const Login = ({ showError,clearReduxDispatch }) => {
   const [password,setPassword] = useState("")
   const [email,setEmail] = useState("")
+  const [onSubmit ,setOnSubmit] = useState(false)
   const {login} = useUser()
   const getPasswordData = (params) => {
     setPassword(params);
@@ -26,9 +27,11 @@ const Login = ({ showError }) => {
   };
 
   const onLogin = ()=>{
+    setOnSubmit(true)
     if(!password || !email) return showError("Please complete the required fields");
+    clearReduxDispatch()
     login(email,password)
-   // clearReduxDispatch()
+   
   }
   return (
     <>
@@ -46,6 +49,8 @@ const Login = ({ showError }) => {
               passData={getEmailData}
               icon="ni ni-email-83"
               autoComplete="new-text"
+              onSubmit={onSubmit}
+              required={true}
             />
             <InputGroup
               name="password"
@@ -54,6 +59,8 @@ const Login = ({ showError }) => {
               passData={getPasswordData}
               icon="ni ni-lock-circle-open"
               autoComplete="new-password"
+              onSubmit={onSubmit}
+              required={true}
             />
 
             <div className="text-center">

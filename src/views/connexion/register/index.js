@@ -8,6 +8,7 @@ import { isEqual } from "lodash";
 import { withNotification } from "../../../hooks/notification.state";
 
 const Register = ({ showError }) => {
+  const [onSubmit,setOnSubmit] = useState(false)
   const [dataUsers, setDataUsers] = useState({
     name: "",
     firstname: "",
@@ -36,6 +37,7 @@ const Register = ({ showError }) => {
   };
 
   const onRegister = () => {
+    setOnSubmit(true)
     const { name, firstname, phone, email, password, password_check } =
       dataUsers;
     const {
@@ -107,11 +109,11 @@ const Register = ({ showError }) => {
         <Card className="bg-secondary shadow">
           <CardBody>
             <h6 className="heading-small text-muted mb-4">User information</h6>
-            <User passDataToParent={getUserData} />
+            <User passDataToParent={getUserData} onSubmit={onSubmit}/>
             <hr className="my-4" />
             {/* Address */}
             <h6 className="heading-small text-muted mb-4">Group information</h6>
-            <Group passDataToParent={getGroupData} />
+            <Group passDataToParent={getGroupData}  onSubmit={onSubmit}/>
             <hr className="my-4" />
             <div className="text-center">
               <Button

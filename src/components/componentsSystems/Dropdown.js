@@ -4,7 +4,7 @@ import {
   Input,
 } from "reactstrap";
 
-const DropdownSystem = ({name,label,lists,passData,value:valueProps }) => {
+const DropdownSystem = ({name,label,lists,passData,value:valueProps, onSubmit ,required }) => {
   const [value,setValue] = useState("")
   const handleChange = (e)=>{
     const {value} = e.target
@@ -20,11 +20,13 @@ const DropdownSystem = ({name,label,lists,passData,value:valueProps }) => {
       setValue(valueProps)
     }
   },[valueProps])
-  
+  const testError = ()=>{
+    return !value && onSubmit && required
+  }
   return (
     
     <FormGroup >
-        <label for="exampleSelect">
+        <label for="exampleSelect" className={testError() ? "error_label":""}>
            {label}
         </label>
         <Input
@@ -35,6 +37,8 @@ const DropdownSystem = ({name,label,lists,passData,value:valueProps }) => {
           defaultValue={lists?.[0] || ""}
           autoComplete="new-text"
           value={value}
+          //invalid={testError()}
+          className={testError() ? "field_invalid":""}
         >
           {lists?.length ?
               lists?.map((item,index)=>{

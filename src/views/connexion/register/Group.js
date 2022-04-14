@@ -4,7 +4,7 @@ import { Row, Col } from "reactstrap";
 import { Input, Dropdown } from "../../../components/componentsSystems";
 import { lists } from "../../../_helpers/_constants";
 
-const Group = ({ passDataToParent }) => {
+const Group = ({ passDataToParent, onSubmit }) => {
   // let selectValue = useSelector((state) => state.selectedValue) || {};
   const [dataGroups, setDataGroups] = useState({
     name: "",
@@ -35,7 +35,14 @@ const Group = ({ passDataToParent }) => {
     <div className="pl-lg-4" onMouseLeave={() => passDataToParent(dataGroups)}>
       <Row>
         <Col md="6">
-          <Input name="name" type="text" label="Name" passData={getData} />
+          <Input
+            name="name"
+            type="text"
+            label="Name"
+            passData={getData}
+            onSubmit={onSubmit}
+            required={true}
+          />
         </Col>
         <Col md="6">
           <Dropdown

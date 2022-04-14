@@ -1,42 +1,45 @@
-
-import {memo,useState,useEffect} from 'react'
+import { memo, useState, useEffect } from "react";
 // reactstrap components
-import {  Container } from "reactstrap";
-import ModalBase from '../Modals/Base'
+import { Container } from "reactstrap";
+import ModalBase from "../Modals/Base";
 
-const HeaderBase = ({parentClass,title,content,onSave,closeModal,setCloseModal}) => {
-  const [isOpen,setIsOpen] = useState(false)
-  const toggle = ()=>{
-    setIsOpen(!isOpen)
-    setCloseModal(false)
-  }
-  useEffect(()=>{
-    if(closeModal) setIsOpen(false)
-  },[closeModal])
+const HeaderBase = ({
+  parentClass,
+  title,
+  content,
+  onSave,
+  closeModal,
+  setCloseModal,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+    setCloseModal(false);
+  };
+  useEffect(() => {
+    if (closeModal) setIsOpen(false);
+  }, [closeModal]);
   return (
     <>
-      <div className={`header bg-gradient-info ${parentClass}`}> 
+      <div className={`header bg-gradient-info ${parentClass}`}>
         <Container fluid>
           <div className="header-body">
             <div className="d-flex justify-content-between w-100">
-                <div>
+              <div>
                 <h3 className="mb-0">{title}</h3>
-                </div>
-                <div className="d-flex" onClick={toggle}>
-                    <span className="text-dark">
-                        <i className="fas fa-plus-circle mr-2"></i>
-                        
-                    </span>
-                    <span className="color_white mb-0">
-                    Add
-                    </span>
-                </div>
+              </div>
+              <div className="d-flex" onClick={toggle}>
+                <span className="text-dark">
+                  <i className="fas fa-plus-circle mr-2"></i>
+                </span>
+                <span className="color_white mb-0">Add</span>
+              </div>
             </div>
           </div>
         </Container>
       </div>
 
-      <ModalBase 
+      <ModalBase
         content={content}
         isOpen={isOpen}
         toggle={toggle}

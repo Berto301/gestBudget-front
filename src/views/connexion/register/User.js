@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Row, Col } from "reactstrap";
 import { Input, InputGroup } from "../../../components/componentsSystems";
 
-const User = ({ passDataToParent }) => {
+const User = ({ passDataToParent ,onSubmit}) => {
   const [dataUsers, setDataUsers] = useState({
     name: "",
     firstname: "",
@@ -26,6 +26,8 @@ const User = ({ passDataToParent }) => {
             type="text"
             label="First name"
             passData={getData}
+            onSubmit={onSubmit}
+            required={true}
           />
         </Col>
         <Col lg="6">
@@ -34,6 +36,8 @@ const User = ({ passDataToParent }) => {
             type="text"
             label="Last name"
             passData={getData}
+            onSubmit={onSubmit}
+            required={true}
           />
         </Col>
       </Row>
@@ -47,6 +51,8 @@ const User = ({ passDataToParent }) => {
             type="email"
             label="Email address"
             passData={getData}
+            onSubmit={onSubmit}
+            required={true}
           />
         </Col>
       </Row>
@@ -59,6 +65,8 @@ const User = ({ passDataToParent }) => {
             passData={getData}
             icon="ni ni-lock-circle-open"
             autoComplete="new-password"
+            onSubmit={onSubmit}
+            required={true}
           />
         </Col>
 
@@ -70,6 +78,8 @@ const User = ({ passDataToParent }) => {
             passData={getData}
             icon="ni ni-lock-circle-open"
             autoComplete="new-password"
+            onSubmit={onSubmit}
+            required={true}
           />
         </Col>
       </Row>
