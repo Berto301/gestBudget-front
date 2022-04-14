@@ -11,6 +11,7 @@ import { socket } from "../../../../_helpers/socket";
 const Index = () => {
   const { setCloseModal, closeModal, _create , _getBySocietyId, recipes} = useRecipeBySociety();
   const {showError} = useNotification()
+  const [onSubmit,setOnSubmit] =useState(false)
   const [dataRecipes, setDataRecipes] = useState({
     date: "",
     realValue: "",
@@ -42,6 +43,7 @@ const Index = () => {
   };
 
   const onSave = ()=>{
+    setOnSubmit(true)
     if(!dataRecipes?._idSelected || !dataRecipes?.realValue || !dataRecipes?.date){
       return showError("Please complete all required fields")
     }
@@ -67,6 +69,7 @@ const Index = () => {
           content={
             <Content
               passDataToParent={getRecipesData}
+              onSubmit={onSubmit}
             />
           }
         />

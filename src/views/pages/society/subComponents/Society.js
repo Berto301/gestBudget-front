@@ -12,7 +12,7 @@ import {
 } from "../../../../_helpers/_constants";
 import { useSociety, useGroup } from "../../../../hooks";
 
-const Society = ({ passDataToParent, id }) => {
+const Society = ({ passDataToParent, id ,onSubmit}) => {
   const { _getById, _society } = useSociety();
   const { _getById: _getGroupId, groups } = useGroup();
 
@@ -59,6 +59,8 @@ const Society = ({ passDataToParent, id }) => {
             label="Matricule number"
             passData={passDataToParent}
             value={_society?.immatriculation || ""}
+            onSubmit={onSubmit}
+            required={true}
           />
         </Col>
         <Col md="4">
@@ -68,6 +70,8 @@ const Society = ({ passDataToParent, id }) => {
             label="Name"
             passData={passDataToParent}
             value={_society?.name || ""}
+            onSubmit={onSubmit}
+            required={true}
           />
         </Col>
         <Col md="4">
@@ -136,6 +140,8 @@ const Society = ({ passDataToParent, id }) => {
             label="Turnover"
             passData={passDataToParent}
             value={_society?.turnover || ""}
+            onSubmit={onSubmit}
+            required={true}
           />
         </Col>
       </Row>

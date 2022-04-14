@@ -11,6 +11,7 @@ import { socket } from "../../../../../_helpers/socket";
 
 const Index = () => {
   const { showError } = useNotification();
+  const [onSubmit,setOnSubmit] = useState(false)
   const { _create, setCloseModal, closeModal, _getByGroupId, sales } =
     useSales();
 
@@ -43,6 +44,7 @@ const Index = () => {
   };
 
   const onSave = () => {
+    setOnSubmit(true)
     const { name, icon, color, estimation, description } = dataSales;
 
     const REQUIRED_FIELD = [name, estimation];
@@ -70,7 +72,7 @@ const Index = () => {
     <>
       <Header
         parentClass="pb-7 pt-7 mb-2"
-        content={<AddSales passDataToParent={getSalesData} />}
+        content={<AddSales passDataToParent={getSalesData} onSubmit={onSubmit}/>}
         title="Sales Management"
         onSave={onSave}
         closeModal={closeModal}

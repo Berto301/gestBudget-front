@@ -5,6 +5,7 @@ import { useGroup } from "../../../../hooks";
 
 const GroupInfo = ({ groups, isAdmin }) => {
   const { _update } = useGroup();
+  const [onSubmit,setOnSubmit] =useState(false)
   const [groupData, setGroupData] = useState({
     name: "",
     activityArea: "",
@@ -26,6 +27,7 @@ const GroupInfo = ({ groups, isAdmin }) => {
   }, [groups]);
 
   const OnUpdate = () => {
+    setOnSubmit(true)
     _update(groupData);
   };
 
@@ -45,6 +47,8 @@ const GroupInfo = ({ groups, isAdmin }) => {
                   passData={getData}
                   value={name}
                   disabled={isAdmin}
+                  onSubmit={onSubmit}
+                  required={true}
                 />
               </Col>
               <Col lg="6">
@@ -88,7 +92,6 @@ const GroupInfo = ({ groups, isAdmin }) => {
             <Row className="align-items-center">
               <Button
                 color="primary"
-                href="#pablo"
                 onClick={OnUpdate}
                 size="sm"
               >

@@ -13,6 +13,7 @@ import { socket } from "../../../../_helpers/socket";
 const Index = () => {
   const { showError } = useNotification();
   const { register, setCloseModal, closeModal } = useUser();
+  const[onSubmit,setOnSubmit] = useState(false)
   const { getByGroupId, societyLists } = useSociety();
   const [data, setData] = useState({
     name: "",
@@ -54,6 +55,7 @@ const Index = () => {
     }));
   };
   const onSave = () => {
+    setOnSubmit(true)
     const {
       name,
       firstname,
@@ -136,7 +138,7 @@ const Index = () => {
     <>
       <Header
         parentClass="pb-7 pt-7 mb-2"
-        content={<AddSociety passDataToParent={getAllData} />}
+        content={<AddSociety passDataToParent={getAllData} onSubmit={onSubmit}/>}
         title="Society Management"
         onSave={onSave}
         closeModal={closeModal}

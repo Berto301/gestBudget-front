@@ -14,6 +14,10 @@ const actionsModal = {
     color: "success",
     title: "Update",
   },
+  "print": {
+    color: "warning",
+    title: "Download",
+  },
 }
 const ModalBase =({content,isOpen,toggle,className,onSave,title,type})=>{ 
   const { color,title:titleButton } = actionsModal[type] || {};

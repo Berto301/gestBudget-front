@@ -88,6 +88,15 @@ export function useSalesBySociety() {
       }
     }
   }
+  const _deleteMore = async (ids)=>{
+    if(Array.isArray(ids)){
+      const deletedSales = await SalesBySociety.deleteMoreSales(JSON.stringify(ids))
+      if(deletedSales?.data?.object){
+        showSuccess("Sales deleted")
+        setCloseModal(true)
+      }
+    }
+  }
 
   return {
     _getById,
@@ -99,6 +108,7 @@ export function useSalesBySociety() {
     sales,
     sale,
     closeModal,
-    setCloseModal
+    setCloseModal,
+    _deleteMore
   };
 }

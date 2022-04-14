@@ -12,6 +12,7 @@ export function useRecipeBySociety() {
     if (id) {
       const response = await RecipeBySocietyService.getById(id);
       if (response?.data?.object) {
+        debugger
         setRecipe(response?.data?.object)
         //
       } 
@@ -90,6 +91,15 @@ export function useRecipeBySociety() {
       }
     }
   }
+  const _deleteMore = async (ids)=>{
+    if(Array.isArray(ids)){
+      const deleteRecipes = await RecipeBySocietyService.deleteMoreRecipes(JSON.stringify(ids))
+      if(deleteRecipes?.data?.object){
+        showSuccess("Recipes deleted")
+        setCloseModal(true)
+      }
+    }
+  }
 
   return {
     _getById,
@@ -101,6 +111,7 @@ export function useRecipeBySociety() {
     recipes,
     recipe,
     closeModal,
-    setCloseModal
+    setCloseModal,
+    _deleteMore
   };
 }

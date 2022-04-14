@@ -11,8 +11,9 @@ import { Input } from "../../../../components/componentsSystems";
 import {useUser} from '../../../../hooks'
 // core components
 
-const UserInformation = ({users}) => {
+const UserInformation = ({users }) => {
   const {_update} = useUser()
+  const [onSubmit,setOnSubmit] = useState(false)
   const [usersData,setUsersData] = useState({
     name:"",
     firstname:"",
@@ -31,6 +32,7 @@ const UserInformation = ({users}) => {
     }
   },[users])
   const OnUpdate = ()=>{
+    setOnSubmit(true)
     _update(usersData)
   }
   const {
@@ -52,6 +54,7 @@ const UserInformation = ({users}) => {
                 label="First name"
                 passData={getData}
                 value={firstname}
+                onSubmit={onSubmit}
               />
             </Col>
             <Col lg="6">
@@ -61,6 +64,7 @@ const UserInformation = ({users}) => {
                 label="Last name"
                 passData={getData}
                 value={name}
+                onSubmit={onSubmit}
               />
             </Col>
           </Row>
@@ -72,6 +76,7 @@ const UserInformation = ({users}) => {
                 label="Email"
                 passData={getData}
                 value={email}
+                onSubmit={onSubmit}
               />
             </Col>
             <Col lg="6">
@@ -91,7 +96,6 @@ const UserInformation = ({users}) => {
         <Row className="align-items-center">
           <Button
             color="primary"
-            href="#pablo"
             onClick={OnUpdate}
             size="sm"
           >

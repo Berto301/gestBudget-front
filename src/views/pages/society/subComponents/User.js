@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Row, Col } from "reactstrap";
 import { Input, InputGroup } from "../../../../components/componentsSystems";
 import { useUser } from "../../../../hooks";
-const User = ({ passDataToParent, id, hidePassword }) => {
+const User = ({ passDataToParent, id, hidePassword , onSubmit}) => {
   const { _getById, usersConnected: user } = useUser();
   useEffect(() => {
     if (id) {
@@ -23,6 +23,8 @@ const User = ({ passDataToParent, id, hidePassword }) => {
             label="First name"
             passData={passDataToParent}
             value={name}
+            onSubmit={onSubmit}
+            required={true}
           />
         </Col>
         <Col lg="6">
@@ -32,6 +34,8 @@ const User = ({ passDataToParent, id, hidePassword }) => {
             label="Last name"
             passData={passDataToParent}
             value={firstname}
+            onSubmit={onSubmit}
+            required={true}
           />
         </Col>
       </Row>
@@ -52,6 +56,8 @@ const User = ({ passDataToParent, id, hidePassword }) => {
             label="Email address"
             passData={passDataToParent}
             value={email}
+            onSubmit={onSubmit}
+            required={true}
           />
         </Col>
       </Row>
@@ -65,6 +71,8 @@ const User = ({ passDataToParent, id, hidePassword }) => {
               passData={passDataToParent}
               icon="ni ni-lock-circle-open"
               autoComplete="new-password"
+              onSubmit={onSubmit}
+              required={true}
             />
           </Col>
         </Row>

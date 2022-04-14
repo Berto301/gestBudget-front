@@ -45,6 +45,7 @@ const Index = (props) => {
       <UserHeader
         name={`${usersConnected?.name} ${usersConnected?.firstname}`}
         isAdmin={usersConnected?.isAdmin}
+
       />
       {/* Page content */}
       <Container className="mt--7" fluid>
@@ -61,6 +62,7 @@ const Index = (props) => {
               <GroupInfo
                 groups={dataGroups}
                 isAdmin={usersConnected?.isAdmin ? false : true}
+               
               />
             </div>
             {!usersConnected?.isAdmin ? (

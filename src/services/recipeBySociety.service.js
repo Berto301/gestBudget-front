@@ -20,6 +20,13 @@ getByGroupId(id){
       return err;
     });
  }
+
+ deleteMoreRecipes(data){
+   return http.delete(`${this.path}/delete-recipes/${data}`).catch((err) => {
+      console.error("Failed to delete recipes ", err);
+      return err;
+    });
+ }
 }
 
 export default new RecipeBySocietyServices();

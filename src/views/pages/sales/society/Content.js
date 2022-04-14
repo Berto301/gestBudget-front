@@ -8,7 +8,7 @@ import {
 } from "../../../../components/componentsSystems";
 import { useSales } from "../../../../hooks";
 
-const Content = ({ passDataToParent, id }) => {
+const Content = ({ passDataToParent, id ,onSubmit}) => {
   const [ estimation , setEstimation] = useState("")
 
   const { _getById, sale } = useSales();
@@ -36,6 +36,8 @@ const Content = ({ passDataToParent, id }) => {
             value={name || ""}
             isRecipe={false}
             passEstimation={getEstimation}
+            onSubmit={onSubmit}
+            required={true}
           />
         </Col>
         <Col lg="6">
@@ -45,6 +47,8 @@ const Content = ({ passDataToParent, id }) => {
               label="Date"
               passData={passDataToParent}
               value={date}
+              onSubmit={onSubmit}
+              required={true}
             />
           </Col>
       </Row>
@@ -57,6 +61,8 @@ const Content = ({ passDataToParent, id }) => {
                 label="Value"
                 passData={passDataToParent}
                 value={realValue}
+                onSubmit={onSubmit}
+                required={true}
             />
         </Col>
         <Col lg="6">

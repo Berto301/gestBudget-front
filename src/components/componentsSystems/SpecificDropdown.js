@@ -13,16 +13,18 @@ const DropdownSystem = ({
   isRecipe,
   passEstimation,
   onSubmit , 
-  required
+  required,
+  disabled
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = useState("");
   const [objectLists, setObjectsLists] = useState([]);
-  const { _getByGroupId, recipes, _getById } = useRecipe();
+  const { _getByGroupId, recipes, _getById ,recipe} = useRecipe();
   const {
     _getByGroupId: getSalesGroupById,
     sales,
     _getById: getById,
+    sale
   } = useSales();
 
   useEffect(() => {
@@ -49,7 +51,6 @@ const DropdownSystem = ({
 
     if (sales?.length) setObjectsLists(sales);
   }, [recipes, sales]);
-
   useEffect(() => {
     if (valueProps) {
       if (isRecipe) {
@@ -59,6 +60,14 @@ const DropdownSystem = ({
       }
     }
   }, [valueProps, isRecipe]);
+
+  useEffect(()=>{
+    if (isRecipe) {
+       setValue(recipe?.name)
+      } else {
+        setValue(sale?.name)
+      }
+  },[recipe,sale,isRecipe])
  
   //const objectSelected = sale || recipe || {};
   
@@ -76,6 +85,7 @@ const DropdownSystem = ({
   const testError = ()=>{
     return !value && onSubmit && required
   }
+  console.log(recipe?.name , value)
   return (
     <FormGroup>
       <label for="exampleSelect" className={` position-relative ${testError() ? "error_label":""}`} >{label}</label>
@@ -84,10 +94,12 @@ const DropdownSystem = ({
         name={name}
         type="input"
         autoComplete="new-text"
+        defaultValue={recipe?.name || sale?.name}
         onClick={onClick}
         value={value}
         //invalid={testError()}
         className={testError() ? "field_invalid":""}
+        disabled={disabled}
       />
       <Fade in={isOpen} className="mt-2 position-absolute w-100">
         <Card className="content_card fade_content ">

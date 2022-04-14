@@ -19,6 +19,12 @@ getByGroupId(id){
       return err;
     });
  }
+ deleteMoreSales(data){
+   return http.delete(`${this.path}/delete-sales/${data}`).catch((err) => {
+      console.error("Failed to delete sales ", err);
+      return err;
+    });
+ }
 }
 
 export default new SalesBySocietyServices();

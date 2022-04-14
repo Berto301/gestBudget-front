@@ -12,6 +12,8 @@ import {
 
 const SocietyInfo = ({ society , activityArea}) => {
   const { _update } = useSociety();
+
+  const [onSubmit,setOnSubmit] = useState(false)
   const [societyData, setSocietyData] = useState({
     _id: localStorage.getItem("societyId"),
     name: "",
@@ -44,6 +46,7 @@ const SocietyInfo = ({ society , activityArea}) => {
   }, [society]);
 
   const OnUpdate = () => {
+    setOnSubmit(true)
     _update(societyData);
   };
 
@@ -94,6 +97,8 @@ const SocietyInfo = ({ society , activityArea}) => {
                   label="Matricule number"
                   passData={getData}
                   value={immatriculation || ""}
+                  required={true}
+                  onSubmit={onSubmit}
                 />
               </Col>
               <Col md="4">
@@ -103,6 +108,8 @@ const SocietyInfo = ({ society , activityArea}) => {
                   label="Name"
                   passData={getData}
                   value={name || ""}
+                  onSubmit={onSubmit}
+                  required={true}
                 />
               </Col>
               <Col md="4">
@@ -171,6 +178,8 @@ const SocietyInfo = ({ society , activityArea}) => {
                   label="Turnover"
                   passData={getData}
                   value={turnover || ""}
+                  onSubmit={onSubmit}
+                  required={true}
                 />
               </Col>
             </Row>

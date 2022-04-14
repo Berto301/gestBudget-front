@@ -12,7 +12,7 @@ import { socket } from "../../../../../_helpers/socket";
 const Index = () => {
   const { showError } = useNotification();
   const { _create, setCloseModal, closeModal ,_getByGroupId, recipes} = useRecipe();
-
+  const [onSubmit,setOnSubmit] = useState(false)
   const [dataRecipe, setDataRecipe] = useState({
     name: "",
     description: "",
@@ -42,6 +42,7 @@ const Index = () => {
   };
 
   const onSave = ()=>{
+    setOnSubmit(true)
     const {
       name,
       icon,
@@ -79,7 +80,7 @@ const Index = () => {
     <>
       <Header
         parentClass="pb-7 pt-7 mb-2"
-        content={<AddRecipe passDataToParent={getRecipeData} />}
+        content={<AddRecipe passDataToParent={getRecipeData} onSubmit={onSubmit}/>}
         title="Recipe Management"
         onSave={onSave}
         closeModal={closeModal}

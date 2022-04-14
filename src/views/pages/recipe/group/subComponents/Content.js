@@ -6,7 +6,7 @@ import { Input ,DropdownWithLabel} from "../../../../../components/componentsSys
 import { useRecipe } from "../../../../../hooks";
 import {FONT_AWESOME , COLORS} from '../../../../../_helpers/_constants'
 
-const Content = ({ passDataToParent, id }) => {
+const Content = ({ passDataToParent, id , onSubmit}) => {
   const { _getById, recipe } = useRecipe();
   useEffect(() => {
     if (id) {
@@ -26,6 +26,8 @@ const Content = ({ passDataToParent, id }) => {
             label="Name"
             passData={passDataToParent}
             value={name}
+            onSubmit={onSubmit}
+            required={true}
           />
         </Col>
         <Col lg="6">
@@ -46,6 +48,8 @@ const Content = ({ passDataToParent, id }) => {
               label="Estimation per month (for all society)"
               passData={passDataToParent}
               value={estimation}
+              onSubmit={onSubmit}
+              required={true}
             />
           </Col>
         </Row>

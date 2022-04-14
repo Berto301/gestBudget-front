@@ -12,6 +12,7 @@ import { socket } from "../../../../_helpers/socket";
 const Index = () => {
   const { setCloseModal, closeModal, _create , _getBySocietyId,sales} = useSalesBySociety();
   const {showError} = useNotification()
+  const[onSubmit,setOnSubmit] =useState(false)
   const [dataSales, setDataSales] = useState({
     date: "",
     realValue: "",
@@ -41,6 +42,7 @@ const Index = () => {
     }));
   };
   const onSave = ()=>{
+    setOnSubmit(true)
     if(!dataSales?._idSelected || !dataSales?.realValue || !dataSales?.date){
       return showError("Please complete all required fields")
     }
@@ -66,7 +68,7 @@ const Index = () => {
           content={
             <Content
               passDataToParent={getSalesData}
-             
+             onSubmit={onSubmit}
             />
           }
         />
