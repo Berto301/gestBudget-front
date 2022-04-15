@@ -3,7 +3,7 @@
 // reactstrap components
 import {  Container, Row, Col } from "reactstrap";
 
-const UserHeader = ({name,isAdmin}) => {
+const UserHeader = ({name,isAdmin }) => {
   return (
     <>
       <div

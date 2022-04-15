@@ -8,24 +8,27 @@ import {
   CardFooter,
 } from "reactstrap";
 import { Input } from "../../../../components/componentsSystems";
-import {useUser,useNotification} from '../../../../hooks'
+import {useUser,useNotification,useDataImage} from '../../../../hooks'
 // core components
 
 const UserInformation = ({users }) => {
   const {_update} = useUser()
   const {showError} = useNotification()
+  const {_create,photo} = useDataImage()
   const [onSubmit,setOnSubmit] = useState(false)
   const [usersData,setUsersData] = useState({
     name:"",
     firstname:"",
     email:"",
-    phone:""
+    phone:"",
+    profileImg:null
   })
   const {
     name,
     firstname,
     email,
-    phone
+    phone,
+    profileImg
   } = usersData
   const getData = (updatedAttrs) => {
     setUsersData((temp) => ({
@@ -38,12 +41,23 @@ const UserInformation = ({users }) => {
       setUsersData(users)
     }
   },[users])
-  const OnUpdate = ()=>{
+  const OnUpdate = async ()=>{
     setOnSubmit(true)
     if(!name || !firstname || !email) return showError("Please complete all required fields")
-    _update(usersData)
+
+      if(profileImg){
+          const formData = new FormData();
+          formData.append("profileImg", profileImg);
+          formData.append("source", users?._id);
+          formData.append("sourceModel", "User");
+          formData.append("groupId",localStorage.getItem("groupId"));
+           await  _create(formData)
+           await _update(usersData)
+           
+      }else{
+        _update(usersData)
+      }
   }
-  
   return (
     <Card className="bg-secondary shadow">
       <CardBody>
@@ -95,6 +109,17 @@ const UserInformation = ({users }) => {
               />
             </Col>
           </Row>
+           <Row>
+              <Col lg="6">
+                  <Input
+                    name="profileImg"
+                    type="file"
+                    label="User photo"
+                    isTypeFile={true}
+                    passData={getData}
+                  />
+                </Col>
+            </Row>
         </div>
         <hr className="my-4" />
       </CardBody>

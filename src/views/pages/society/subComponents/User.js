@@ -61,6 +61,19 @@ const User = ({ passDataToParent, id, hidePassword , onSubmit}) => {
           />
         </Col>
       </Row>
+      <Row>
+        <Col lg="6">
+            <Input
+              name="userphoto"
+              type="file"
+              label="User photo"
+              passData={passDataToParent}
+              //value={email}
+              //onSubmit={onSubmit}
+              //required={true}
+            />
+          </Col>
+      </Row>
       {!hidePassword ? (
         <Row>
           <Col lg="6">

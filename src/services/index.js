@@ -5,6 +5,7 @@ import RecipeService from './recipe.service'
 import SalesService from "./sales.service";
 import SalesBySociety from "./salesBySociety";
 import RecipeBySocietyService from "./recipeBySociety.service";
+import DataImage from './dataImage'
 export{
     UsersService,
     GroupsService,
@@ -12,5 +13,6 @@ export{
     RecipeService,
     SalesService,
     SalesBySociety,
-    RecipeBySocietyService
+    RecipeBySocietyService,
+    DataImage
 }

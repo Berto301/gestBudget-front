@@ -4,15 +4,37 @@ import {
   Input,
   Form
 } from "reactstrap";
+import {REGEX_IMAGE} from '../../_helpers/_constants'
+import {useNotification} from '../../hooks'
 
-const InputSystem = ({name,label,passData,type,value:valueProps ,disabled , required , onSubmit}) => {
-  
+const InputSystem = ({name,label,passData,type,value:valueProps ,disabled , required , onSubmit , isTypeFile}) => {
+  const {showError} =useNotification()
   const [value,setValue]=useState("")
   const onChange = (e)=>{
-    e.preventDefault()
-    const {value} = e.target
-    setValue(value)
-    passData({[name]:value})
+    if(isTypeFile){
+        const reader = new FileReader();
+        const fileElement = e.target.files[0]
+        if (!fileElement?.name?.match(REGEX_IMAGE)) {
+            showError("Please select an object valid");
+        }
+        
+
+        //lecture du fichier
+        reader.onload = () => {
+          if (reader.readyState === 2) {
+            console.log(fileElement?.name)
+            //setValue(fileElement?.name)
+            passData({profileImg:fileElement})
+          }
+        };
+        reader.readAsDataURL(fileElement);
+      }else{
+        e.preventDefault()
+        const {value} = e.target
+        setValue(value)
+        passData({[name]:value})
+      }
+    
   }
   useEffect(()=>{
     if(valueProps){
@@ -26,7 +48,7 @@ const InputSystem = ({name,label,passData,type,value:valueProps ,disabled , requ
     return !value && onSubmit && required
   }
   return (
-    <Form autoComplete="off">
+    <Form autoComplete="off" encType="multipart/form-data">
     <FormGroup>
       <label
         htmlFor={`input-last-${name}`}

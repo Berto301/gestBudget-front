@@ -53,6 +53,7 @@ const Index = (props) => {
           <Profile
             name={`${usersConnected?.name} ${usersConnected?.firstname}`}
             isAdmin={usersConnected?.isAdmin}
+             originalName = {usersConnected?.originalName}
           />
           <Col className="order-xl-1" xl="8">
             <div className="mb-2">

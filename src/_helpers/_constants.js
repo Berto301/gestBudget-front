@@ -2,6 +2,7 @@
 export const STRONG_PASSWORD_REGEX = new RegExp(
   "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})"
 );
+export const REGEX_IMAGE = /\.(jpg|jpeg|png|gif|bmp|webp|ico|JPG|JPEG|PNG|GIF|BMP|WEBP|ICO)$/;
 
 export const ERROR = "error";
 export const SUCCESS = "success";

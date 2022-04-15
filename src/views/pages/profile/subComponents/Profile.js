@@ -6,7 +6,7 @@ import {
     Col,
   } from "reactstrap";
   
-  const Profile = ({name,isAdmin}) => {
+  const Profile = ({name,isAdmin , originalName}) => {
     return (
         <Col className="order-xl-2 mb-5 mb-xl-0" xl="4">
         <Card className="card-profile shadow content-profile">
@@ -17,10 +17,7 @@ import {
                   <img
                     alt="..."
                     className="rounded-circle"
-                    src={
-                      require("../../../../assets/img/others/profile.jpg")
-                        .default
-                    }
+                    src={ originalName ? process.env.PUBLIC_URL+"/public/"+originalName :  require("../../../../assets/img/others/profile.jpg").default}
                   />
                 </a>
               </div>
