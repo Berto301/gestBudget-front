@@ -15,9 +15,9 @@ import {
               <div className="card-profile-image">
                 <a href="#pablo" onClick={(e) => e.preventDefault()}>
                   <img
-                    alt="..."
+                    alt="pdp"
                     className="rounded-circle"
-                    src={ originalName ? process.env.PUBLIC_URL+"/public/"+originalName :  require("../../../../assets/img/others/profile.jpg").default}
+                    src={ originalName ? process.env.REACT_APP_SERVER+"/public/"+originalName :  require("../../../../assets/img/others/profile.jpg").default}
                   />
                 </a>
               </div>
