@@ -115,7 +115,7 @@ const Items = ({sales}) => {
         toggle={showModalPrint}
         onSave={()=>exportPdf("sale")}
         type="print"
-        isPrint={true}
+        modalLg={true}
         className="modal_double_width"
       />
       <ModalBase
@@ -138,8 +138,10 @@ const Items = ({sales}) => {
         }
         isOpen={openEdit}
         toggle={showModalEdit}
+        modalLg={true}
        // onSave={onDeleteMore}
         type="update"
+        className="modal_double_width"
       />
     </>
   );

@@ -19,10 +19,10 @@ const actionsModal = {
     title: "Download",
   },
 }
-const ModalBase =({content,isOpen,toggle,className,onSave,title,type , isPrint})=>{ 
+const ModalBase =({content,isOpen,toggle,className,onSave,title,type , modalLg})=>{ 
   const { color,title:titleButton } = actionsModal[type] || {};
   return(
-    <Modal isOpen={isOpen} toggle={toggle} className={className} centered={true} size={isPrint ? "lg" :"md"} style={{maxWidth: `${isPrint ? "700px" :"500px"}`, width: '100%'}}>
+    <Modal isOpen={isOpen} toggle={toggle} className={className} centered={true} size={modalLg ? "lg" :"md"} style={{maxWidth: `${modalLg ? "700px" :"500px"}`, width: '100%'}}>
       <ModalHeader toggle={toggle}>{title}</ModalHeader>
       <ModalBody>
        {content}

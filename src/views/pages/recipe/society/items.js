@@ -115,7 +115,7 @@ const Items = ({recipes}) => {
         toggle={showModalPrint}
         onSave={()=>exportPdf("recipe")}
         type="print"
-        isPrint={true}
+        modalLg={true}
         className="modal_double_width"
       />
 
@@ -137,10 +137,12 @@ const Items = ({recipes}) => {
             id={recipes?.idRecipes}
           />
         }
+        modalLg={true}
         isOpen={openEdit}
         toggle={showModalEdit}
        // onSave={onDeleteMore}
         type="update"
+        className="modal_double_width"
       />
     </>
   );
