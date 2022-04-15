@@ -10,8 +10,7 @@ import {
 import {useSalesBySociety} from '../../../../hooks'
 import ModalBase from "../../../../components/Modals/Base";
 import DeleteComponent from "../../../../components/Modals/Delete";
-// import PrintTable from './Print'
-// import { print } from 'react-pdf-print'
+import {exportPdf} from '../../../../_helpers/_functions'
 import EditTable from './EditTable'
 
 const Items = ({sales}) => {
@@ -103,6 +102,22 @@ const Items = ({sales}) => {
       </div>
 
       <hr className="my-3" />
+      <ModalBase
+        content={
+          <EditTable
+            idToPrint="print-sale"
+            id={sales?.idSales}
+            total={realValueProps}
+            isPrint={true}
+          />
+        }
+        isOpen={openPrint}
+        toggle={showModalPrint}
+        onSave={()=>exportPdf("sale")}
+        type="print"
+        isPrint={true}
+        className="modal_double_width"
+      />
       <ModalBase
         content={
           <DeleteComponent

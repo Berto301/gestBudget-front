@@ -1,3 +1,4 @@
+/*eslint react-hooks/exhaustive-deps:off*/
 // reactstrap components
 import {useEffect} from 'react'
 import { Container, Row, Card, CardBody, Col, Progress } from "reactstrap";

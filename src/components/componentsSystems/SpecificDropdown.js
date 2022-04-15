@@ -12,19 +12,20 @@ const DropdownSystem = ({
   value: valueProps,
   isRecipe,
   passEstimation,
-  onSubmit , 
+  onSubmit,
   required,
-  disabled
+  disabled,
+  isPrint,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = useState("");
   const [objectLists, setObjectsLists] = useState([]);
-  const { _getByGroupId, recipes, _getById ,recipe} = useRecipe();
+  const { _getByGroupId, recipes, _getById, recipe } = useRecipe();
   const {
     _getByGroupId: getSalesGroupById,
     sales,
     _getById: getById,
-    sale
+    sale,
   } = useSales();
 
   useEffect(() => {
@@ -61,16 +62,16 @@ const DropdownSystem = ({
     }
   }, [valueProps, isRecipe]);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (isRecipe) {
-       setValue(recipe?.name)
-      } else {
-        setValue(sale?.name)
-      }
-  },[recipe,sale,isRecipe])
- 
+      setValue(recipe?.name);
+    } else {
+      setValue(sale?.name);
+    }
+  }, [recipe, sale, isRecipe]);
+
   //const objectSelected = sale || recipe || {};
-  
+
   const onClick = () => {
     setIsOpen(!isOpen);
   };
@@ -82,54 +83,65 @@ const DropdownSystem = ({
     });
     setIsOpen(!isOpen);
   };
-  const testError = ()=>{
-    return !value && onSubmit && required
-  }
-  console.log(recipe?.name , value)
+  const testError = () => {
+    return !value && onSubmit && required;
+  };
+  console.log(recipe?.name, value);
   return (
-    <FormGroup>
-      <label for="exampleSelect" className={` position-relative ${testError() ? "error_label":""}`} >{label}</label>
-      <Input
-        id="exampleSelect"
-        name={name}
-        type="input"
-        autoComplete="new-text"
-        defaultValue={recipe?.name || sale?.name}
-        onClick={onClick}
-        value={value}
-        //invalid={testError()}
-        className={testError() ? "field_invalid":""}
-        disabled={disabled}
-      />
-      <Fade in={isOpen} className="mt-2 position-absolute w-100">
-        <Card className="content_card fade_content ">
-          <CardBody className="no-padding hidden_with_scroll ">
-            {objectLists?.length ? (
-              objectLists?.map((item, index) => {
-                return (
-                  <div
-                    key={item?._id}
-                    className="d-flex list position-relative"
-                    onClick={() => onClickItem(item)}
-                  >
-                    <div className="content_custom_radio">
-                      <label
-                        className={`custom_radio ${
-                          value === item?.name ? "active" : ""
-                        }`}
-                      ></label>
-                      {item?.name}
-                    </div>
-                  </div>
-                );
-              })
-            ) : (
-              <div className="text-center">No item</div>
-            )}
-          </CardBody>
-        </Card>
-      </Fade>
-    </FormGroup>
+    <>
+      {isPrint ? (
+        <>{value}</>
+      ) : (
+        <FormGroup>
+          <label
+            for="exampleSelect"
+            className={` position-relative ${testError() ? "error_label" : ""}`}
+          >
+            {label}
+          </label>
+          <Input
+            id="exampleSelect"
+            name={name}
+            type="input"
+            autoComplete="new-text"
+            defaultValue={recipe?.name || sale?.name}
+            onClick={onClick}
+            value={value}
+            //invalid={testError()}
+            className={testError() ? "field_invalid" : ""}
+            disabled={disabled}
+          />
+          <Fade in={isOpen} className="mt-2 position-absolute w-100">
+            <Card className="content_card fade_content ">
+              <CardBody className="no-padding hidden_with_scroll ">
+                {objectLists?.length ? (
+                  objectLists?.map((item, index) => {
+                    return (
+                      <div
+                        key={item?._id}
+                        className="d-flex list position-relative"
+                        onClick={() => onClickItem(item)}
+                      >
+                        <div className="content_custom_radio">
+                          <label
+                            className={`custom_radio ${
+                              value === item?.name ? "active" : ""
+                            }`}
+                          ></label>
+                          {item?.name}
+                        </div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="text-center">No item</div>
+                )}
+              </CardBody>
+            </Card>
+          </Fade>
+        </FormGroup>
+      )}
+    </>
   );
 };
 

@@ -1,3 +1,4 @@
+/*eslint react-hooks/exhaustive-deps:off*/
 import { useEffect } from "react";
 // reactstrap components
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
@@ -34,16 +35,9 @@ const Header = ({ data }) => {
 
   useEffect(() => {
     if (data?.sales || data?.recipes) {
-      // for(let sale of sales){
-      //   for(let recipe of recipes){
-      //     if()
-      //   }
-      // }
+      
       checkTheBestSociety();
-      const max = Math.max.apply(
-        Math,
-        data?.recipes?.map((item) => item.value)
-      );
+     
     }
   }, [data?.sales, data?.recipes]);
 

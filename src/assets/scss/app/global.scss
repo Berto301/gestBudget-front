@@ -195,3 +195,14 @@
 .error_label {
     color: #F60A20 !important;
 }
+.modal_double_width{
+    .modal-content{
+      width: 200% !important;
+    }
+  }
+
+.print-recipe{
+    tr{
+        height: 20px;
+    }
+}

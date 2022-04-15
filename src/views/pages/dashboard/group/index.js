@@ -1,3 +1,4 @@
+/*eslint react-hooks/exhaustive-deps:off*/
 import {useEffect} from 'react'
 import { Pie, Doughnut } from "react-chartjs-2";
 // reactstrap components

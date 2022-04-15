@@ -12,7 +12,6 @@ export function useRecipeBySociety() {
     if (id) {
       const response = await RecipeBySocietyService.getById(id);
       if (response?.data?.object) {
-        debugger
         setRecipe(response?.data?.object)
         //
       } 

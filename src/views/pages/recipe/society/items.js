@@ -9,9 +9,8 @@ import {
 import {useRecipeBySociety} from '../../../../hooks'
 import ModalBase from "../../../../components/Modals/Base";
 import DeleteComponent from "../../../../components/Modals/Delete";
-// import PrintTable from './Print'
-// import { print } from 'react-pdf-print'
 import EditTable from './EditTable'
+import {exportPdf} from '../../../../_helpers/_functions'
 
 const Items = ({recipes}) => {
   const {
@@ -26,6 +25,7 @@ const Items = ({recipes}) => {
   const [openPrint,setOpenPrint] =useState(false)
   const [openEdit,setOpenEdit] =useState(false)
   const {_deleteMore,closeModal,setCloseModal} = useRecipeBySociety()
+  
   const calculatePercent = ()=>{
     return ((realValueProps/estimation) * 100).toFixed(2)
   }
@@ -46,9 +46,7 @@ const Items = ({recipes}) => {
     setCloseModal(false)
   }
 
-  //  const handlePrint = ()=>{
-  //   print("print")
-  // }
+  
   useEffect(()=>{
     if(closeModal){
       setOpenDelete(false)
@@ -104,17 +102,22 @@ const Items = ({recipes}) => {
 
       <hr className="my-3" />
 
-       {/*<ModalBase
+       <ModalBase
         content={
-          <PrintTable
-            id="print"
+          <EditTable
+            idToPrint="print-recipe"
+            id={recipes?.idRecipes}
+            total={realValueProps}
+            isPrint={true}
           />
         }
         isOpen={openPrint}
         toggle={showModalPrint}
-        onSave={handlePrint}
+        onSave={()=>exportPdf("recipe")}
         type="print"
-      />*/}
+        isPrint={true}
+        className="modal_double_width"
+      />
 
      <ModalBase
         content={
