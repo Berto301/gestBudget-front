@@ -86,7 +86,7 @@ const DropdownSystem = ({
   const testError = () => {
     return !value && onSubmit && required;
   };
-  console.log(recipe?.name, value);
+  
   return (
     <>
       {isPrint ? (

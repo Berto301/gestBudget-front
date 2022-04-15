@@ -9,7 +9,8 @@ const EditTable = ({ id, isPrint, idToPrint, total }) => {
       id={idToPrint}
       style={{
         width: `${Dimensions[4]?.width}`,
-        height: `${Dimensions[4]?.height}`,
+        minHeight: "200px", //`${Dimensions[4]?.height}`
+        height:"100%"
       }}
     >
       <thead>
@@ -26,11 +27,11 @@ const EditTable = ({ id, isPrint, idToPrint, total }) => {
         })}
 
         {isPrint ? (
-          <tr>
+          <tr style={{height:"20px"}}>
             <th>Total</th>
             <td></td>
-            <td>{total}Ar</td>
             <td></td>
+            <td>{total}Ar</td>
           </tr>
         ) : (
           ""

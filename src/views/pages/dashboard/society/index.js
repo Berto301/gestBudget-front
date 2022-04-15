@@ -27,7 +27,6 @@ const Index = (props) => {
   }, []);
 
   const {sales,recipes} = dataStatics
-  console.log(sales,recipes)
 
 
   const dataBySales = {
