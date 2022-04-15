@@ -8,11 +8,12 @@ import {
   CardFooter,
 } from "reactstrap";
 import { Input } from "../../../../components/componentsSystems";
-import {useUser} from '../../../../hooks'
+import {useUser,useNotification} from '../../../../hooks'
 // core components
 
 const UserInformation = ({users }) => {
   const {_update} = useUser()
+  const {showError} = useNotification()
   const [onSubmit,setOnSubmit] = useState(false)
   const [usersData,setUsersData] = useState({
     name:"",
@@ -20,6 +21,12 @@ const UserInformation = ({users }) => {
     email:"",
     phone:""
   })
+  const {
+    name,
+    firstname,
+    email,
+    phone
+  } = usersData
   const getData = (updatedAttrs) => {
     setUsersData((temp) => ({
       ...temp,
@@ -33,14 +40,10 @@ const UserInformation = ({users }) => {
   },[users])
   const OnUpdate = ()=>{
     setOnSubmit(true)
+    if(!name || !firstname || !email) return showError("Please complete all required fields")
     _update(usersData)
   }
-  const {
-    name,
-    firstname,
-    email,
-    phone
-  } = usersData
+  
   return (
     <Card className="bg-secondary shadow">
       <CardBody>
@@ -55,6 +58,7 @@ const UserInformation = ({users }) => {
                 passData={getData}
                 value={firstname}
                 onSubmit={onSubmit}
+                required={true}
               />
             </Col>
             <Col lg="6">
@@ -65,6 +69,7 @@ const UserInformation = ({users }) => {
                 passData={getData}
                 value={name}
                 onSubmit={onSubmit}
+                required={true}
               />
             </Col>
           </Row>
@@ -77,6 +82,7 @@ const UserInformation = ({users }) => {
                 passData={getData}
                 value={email}
                 onSubmit={onSubmit}
+                required={true}
               />
             </Col>
             <Col lg="6">

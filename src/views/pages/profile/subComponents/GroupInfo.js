@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import { Button, Card, CardBody, Row, Col, CardFooter } from "reactstrap";
 import { Input } from "../../../../components/componentsSystems";
-import { useGroup } from "../../../../hooks";
+import { useGroup ,useNotification } from "../../../../hooks";
 
 const GroupInfo = ({ groups, isAdmin }) => {
   const { _update } = useGroup();
   const [onSubmit,setOnSubmit] =useState(false)
+  const {showError} = useNotification()
   const [groupData, setGroupData] = useState({
     name: "",
     activityArea: "",
     email: "",
     phone: "",
   });
+  const { name, activityArea, email, phone } = groupData;
 
   const getData = (updatedAttrs) => {
     setGroupData((temp) => ({
@@ -28,10 +30,11 @@ const GroupInfo = ({ groups, isAdmin }) => {
 
   const OnUpdate = () => {
     setOnSubmit(true)
+    if(!name) return showError("Please complete all required fields")
     _update(groupData);
   };
 
-  const { name, activityArea, email, phone } = groupData;
+  
   return (
     <>
       <Card className="bg-secondary shadow">

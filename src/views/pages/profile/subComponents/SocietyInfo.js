@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button, Card, CardBody, Row, Col, CardFooter } from "reactstrap";
-import { useSociety } from "../../../../hooks";
+import { useSociety , useNotification } from "../../../../hooks";
 import { Input, Dropdown } from "../../../../components/componentsSystems";
 import {
   MANAGEMENT_STYLES,
@@ -12,7 +12,7 @@ import {
 
 const SocietyInfo = ({ society , activityArea}) => {
   const { _update } = useSociety();
-
+  const {showError} =useNotification()
   const [onSubmit,setOnSubmit] = useState(false)
   const [societyData, setSocietyData] = useState({
     _id: localStorage.getItem("societyId"),
@@ -32,6 +32,21 @@ const SocietyInfo = ({ society , activityArea}) => {
     groupId: localStorage.getItem("groupId"),
   });
 
+  const {
+    name,
+    type,
+    email,
+    phone,
+    creationDate,
+    lawerForm,
+    managementStyle,
+    accountBank,
+    bank,
+    immatriculation,
+    structure,
+    turnover,
+  } = societyData;
+
   const getData = (updatedAttrs) => {
     setSocietyData((temp) => ({
       ...temp,
@@ -47,6 +62,7 @@ const SocietyInfo = ({ society , activityArea}) => {
 
   const OnUpdate = () => {
     setOnSubmit(true)
+    if(!immatriculation || !name || !turnover) return showError("Please complete all required fields")
     _update(societyData);
   };
 
@@ -69,20 +85,7 @@ const SocietyInfo = ({ society , activityArea}) => {
   };
   const areaActivityLists = arrangeLists(lists) || [];
 
-  const {
-    name,
-    type,
-    email,
-    phone,
-    creationDate,
-    lawerForm,
-    managementStyle,
-    accountBank,
-    bank,
-    immatriculation,
-    structure,
-    turnover,
-  } = societyData;
+  
   return (
     <>
       <Card className="bg-secondary shadow">
@@ -94,7 +97,7 @@ const SocietyInfo = ({ society , activityArea}) => {
                 <Input
                   name="immatriculation"
                   type="text"
-                  label="Matricule number"
+                  label="Matricule (NIF/STAT)"
                   passData={getData}
                   value={immatriculation || ""}
                   required={true}
