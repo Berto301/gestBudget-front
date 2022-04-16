@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { UsersService } from "../services/";
-import { useNotification } from "./index";
+import { useNotification } from "./index"; //useDataImage
 import { useHistory } from "react-router-dom";
 //import { useDispatch } from "react-redux";
 
@@ -10,6 +10,7 @@ export function useUser() {
   const { showError, showSuccess } = useNotification();
   const [closeModal,setCloseModal] = useState(false)
   const history = useHistory();
+  //const {_create} = useDataImage()
   //const reduxDispatch = useDispatch()
 
   const register = async (data) => {
@@ -19,13 +20,29 @@ export function useUser() {
     }
     const response = await UsersService.register(data);
     if (response?.data) {
-      const { success, message } = response?.data;
+      const { success, message  } = response?.data;
       if (!success) return showError(message);
       showSuccess("Account created");
       if(!noAuth){
         return history.push("/auth/login");
       }
-      setCloseModal(true)
+      
+      // if(data?.withPhoto){
+      //   const {users:{_id:idUsers},society:{_id:idSociety}} = data
+
+        
+      //   if(data?.others?.users){
+      //     let {users} = data?.others
+      //     users.append("source",idUsers)
+      //     await _create(users)
+      //     debugger
+      //     setCloseModal(true)
+      //   }
+      // }else{
+        setCloseModal(true)
+      //}
+      
+      
       //redirect to login
       
     } else {

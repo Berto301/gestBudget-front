@@ -12,7 +12,7 @@ import {
 } from "../../../../_helpers/_constants";
 import { useSociety, useGroup } from "../../../../hooks";
 
-const Society = ({ passDataToParent, id ,onSubmit}) => {
+const Society = ({ passDataToParent, id ,onSubmit, onUpdate}) => {
   const { _getById, _society } = useSociety();
   const { _getById: _getGroupId, groups } = useGroup();
 
@@ -172,6 +172,27 @@ const Society = ({ passDataToParent, id ,onSubmit}) => {
             passData={passDataToParent}
             value={_society?.lawerForm || ""}
           />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          {onUpdate ? (
+            <Col lg="6">
+              <Input
+                name="logo"
+                type="file"
+                label="Logo"
+                passData={passDataToParent}
+                isTypeFile={true}
+                //value={email}
+                //onSubmit={onSubmit}
+                //required={true}
+              />
+            </Col>
+          ) : (
+            ""
+          )}
+        
         </Col>
       </Row>
     </div>

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Row, Col } from "reactstrap";
 import { Input, InputGroup } from "../../../../components/componentsSystems";
 import { useUser } from "../../../../hooks";
-const User = ({ passDataToParent, id, hidePassword , onSubmit}) => {
+const User = ({ passDataToParent, id, hidePassword, onSubmit ,onUpdate }) => {
   const { _getById, usersConnected: user } = useUser();
   useEffect(() => {
     if (id) {
@@ -62,20 +62,24 @@ const User = ({ passDataToParent, id, hidePassword , onSubmit}) => {
         </Col>
       </Row>
       <Row>
-        <Col lg="6">
+        {onUpdate ? (
+          <Col lg="6">
             <Input
-              name="userphoto"
+              name="profileImg"
               type="file"
               label="User photo"
               passData={passDataToParent}
+              isTypeFile={true}
               //value={email}
               //onSubmit={onSubmit}
               //required={true}
             />
           </Col>
-      </Row>
-      {!hidePassword ? (
-        <Row>
+        ) : (
+          ""
+        )}
+
+        {!hidePassword ? (
           <Col lg="6">
             <InputGroup
               name="password"
@@ -88,10 +92,10 @@ const User = ({ passDataToParent, id, hidePassword , onSubmit}) => {
               required={true}
             />
           </Col>
-        </Row>
-      ) : (
-        ""
-      )}
+        ) : (
+          ""
+        )}
+      </Row>
     </div>
   );
 };

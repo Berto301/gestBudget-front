@@ -22,7 +22,6 @@ const InputGroupSystem = ({name,label,passData,autoComplete,icon,type , onSubmit
   const testError = ()=>{
     return !value && onSubmit && required
   }
-  console.log(testError())
   return (
     <Form autoComplete="off">
     <FormGroup >

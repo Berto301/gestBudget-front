@@ -14,7 +14,7 @@ import {useUser,useNotification,useDataImage} from '../../../../hooks'
 const UserInformation = ({users }) => {
   const {_update} = useUser()
   const {showError} = useNotification()
-  const {_create,photo} = useDataImage()
+  const {_create } = useDataImage()
   const [onSubmit,setOnSubmit] = useState(false)
   const [usersData,setUsersData] = useState({
     name:"",
@@ -41,6 +41,7 @@ const UserInformation = ({users }) => {
       setUsersData(users)
     }
   },[users])
+  console.log(users)
   const OnUpdate = async ()=>{
     setOnSubmit(true)
     if(!name || !firstname || !email) return showError("Please complete all required fields")
@@ -117,6 +118,7 @@ const UserInformation = ({users }) => {
                     label="User photo"
                     isTypeFile={true}
                     passData={getData}
+                    originalName={users?.originalName}
                   />
                 </Col>
             </Row>

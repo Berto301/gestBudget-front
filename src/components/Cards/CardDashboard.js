@@ -21,7 +21,7 @@ const CardDashboard = ({sales , lastActivity}) => {
   return (
     <Container className="header pb-2 pt-2 bg-gradient-info" fluid>
       <CardDescriptionValue
-        name="BUDGET SPENT"
+        name="BUDGET SPENT / BUDGET FORECAST"
         value={`${sales?.[0]?.realValue || 0} Ar/${sales?.[0]?.sale || 0} Ar`}
         date={toKnowLastActivity(lastActivity)}
         percent={(sales?.[0]?.realValue/sales?.[0]?.sale ) * 100 || 100}

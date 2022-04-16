@@ -6,9 +6,11 @@ class DataImage extends BaseService {
     super("upload");
   }
 
+
+ 
  
 uploadImage(){
-   return http.post(`${this.path}/`)
+   return http.post(`${this.path}/`,)
 
      .then(()=>{
        console.log("image uploaded successFull")
@@ -18,6 +20,8 @@ uploadImage(){
       return err;
     });
  }
+
+ 
 
  
 }

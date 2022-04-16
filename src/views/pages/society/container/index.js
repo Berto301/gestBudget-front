@@ -124,7 +124,6 @@ const Index = () => {
       password,
       isAdmin: false,
     };
-
     const allData = {
       society,
       users,

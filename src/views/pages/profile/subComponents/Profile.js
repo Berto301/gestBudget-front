@@ -18,6 +18,7 @@ import {
                     alt="pdp"
                     className="rounded-circle"
                     src={ originalName ? process.env.REACT_APP_SERVER+"/public/"+originalName :  require("../../../../assets/img/others/profile.jpg").default}
+                    style={{width:"11.25rem",height:"11.25rem" , objectFit:"cover"}}
                   />
                 </a>
               </div>

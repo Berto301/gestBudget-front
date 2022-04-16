@@ -9,7 +9,7 @@ export default function AddSociety({passDataToParent ,onSubmit}){
 				<Society passDataToParent={passDataToParent} onSubmit={onSubmit}/>
 				<hr className="mt-2 mb-2"/>
 				<h2>Admin Informations</h2>
-				<User passDataToParent={passDataToParent} onSubmit={onSubmit} />
+				<User passDataToParent={passDataToParent} onSubmit={onSubmit} onUpdate={false} />
 			</div>
 		)
 } 

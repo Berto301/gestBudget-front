@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import withNotification from "../../hooks/notification.state";
 
-const AdminNavbar = ({usersConnected:{name,firstname,_id},brandText , clearReduxDispatch}) => {
+const AdminNavbar = ({usersConnected:{name,firstname,originalName},brandText , clearReduxDispatch}) => {
   const onLogout =()=>{
    clearReduxDispatch()
     localStorage.clear();
@@ -37,9 +37,10 @@ const AdminNavbar = ({usersConnected:{name,firstname,_id},brandText , clearRedux
                     <img
                       alt="..."
                       src={
-                        require("../../assets/img/others/profile.jpg")
+                        originalName ? process.env.REACT_APP_SERVER+"/public/"+originalName : require("../../assets/img/others/profile.jpg")
                           .default
                       }
+                      style={{width:"2.25rem",height:"2.25rem" , objectFit:"cover"}}
                     />
                   </span>
                   <Media className="ml-2 d-none d-lg-block">

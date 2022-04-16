@@ -13,16 +13,18 @@ import ModalBase from "../../../../components/Modals/Base";
 import User from "../subComponents/User";
 import Society from "../subComponents/Society";
 
-import { useNotification, useUser, useSociety } from "../../../../hooks";
+import { useNotification, useUser, useSociety,useDataImage } from "../../../../hooks";
 import DeleteComponent from "../../../../components/Modals/Delete";
 const Items = ({ data }) => {
   const {
     turnover: turnOverProps,
     name: nameSocietyProps,
     type: typeProps,
-    adminId: adminIdProps,
+    adminData: adminDataProps,
     lawerForm: lawerFormProps,
     bank: bankProps,
+    locationUser,
+    logo:enterpriseLogo,
     _id: idSociety,
   } = data;
   const { showError } = useNotification();
@@ -30,6 +32,7 @@ const Items = ({ data }) => {
   const [isOpenEditSociety, setIsOpenEditSociety] = useState(false);
   const [isOpenDeleteSociety, setIsOpenDeleteSociety] = useState(false);
   const { _update, closeModal, setCloseModal } = useUser();
+  const {_create} = useDataImage()
 
   const {
     _update: updateSociety,
@@ -43,6 +46,7 @@ const Items = ({ data }) => {
     firstname: "",
     email: "",
     phone: "",
+    profileImg: "",
   });
 
   const [dataSociety, setDataSociety] = useState({
@@ -60,6 +64,7 @@ const Items = ({ data }) => {
     turnover: "",
     adminId: null,
     groupId: null,
+    logo:null
   });
 
   const toggleEditUser = (id) => {
@@ -96,7 +101,7 @@ const Items = ({ data }) => {
   useEffect(() => {
     setDataSociety({
       ...data,
-      adminId: adminIdProps?._id,
+      adminId: adminDataProps?._id,
       nameSociety: nameSocietyProps,
       emailSociety: data?.email,
       phoneSociety: data?.phone,
@@ -104,9 +109,9 @@ const Items = ({ data }) => {
   }, []);
   useEffect(() => {
     setDataUser({
-      ...adminIdProps, //Information admin copy
+      ...adminDataProps, //Information admin copy
     });
-  }, [adminIdProps]);
+  }, [adminDataProps]);
 
   useEffect(() => {
     if (closeModal || closeModalSociety) {
@@ -120,9 +125,9 @@ const Items = ({ data }) => {
     name: nameUser,
     firstname: firstnameUSer,
     _id: idUser,
-  } = adminIdProps;
+  } = adminDataProps;
 
-  const onUpdateSociety = () => {
+  const onUpdateSociety = async () => {
     const {
       nameSociety,
       type,
@@ -136,8 +141,9 @@ const Items = ({ data }) => {
       immatriculation,
       structure,
       turnover,
+      logo
     } = dataSociety;
-
+    debugger
     if (!nameSociety || !turnover || !immatriculation) {
       return showError("Please, complete all required fields");
     }
@@ -159,12 +165,21 @@ const Items = ({ data }) => {
       adminId: idUser,
       groupId: localStorage.getItem("groupId"),
     };
-
-    updateSociety(dataToUpdate);
+    if(logo){
+      const formData = new FormData();
+      formData.append("profileImg", logo);
+      formData.append("source", idSociety);
+      formData.append("sourceModel", "Compagny");
+      formData.append("groupId", localStorage.getItem("groupId"));
+      await _create(formData);
+      await updateSociety(dataToUpdate);
+    }else{
+      await updateSociety(dataToUpdate);
+    }
   };
 
-  const onUpdateUser = () => {
-    const { name, firstname, email, phone } = dataUser;
+  const onUpdateUser = async () => {
+    const { name, firstname, email, phone, profileImg } = dataUser;
 
     if (!name || !firstname || !email) {
       return showError("Please, complete all required fields");
@@ -178,12 +193,23 @@ const Items = ({ data }) => {
       phone,
     };
 
-    _update(dataToUpdate);
+    if (profileImg) {
+      const formData = new FormData();
+      formData.append("profileImg", profileImg);
+      formData.append("source", idUser);
+      formData.append("sourceModel", "User");
+      formData.append("groupId", localStorage.getItem("groupId"));
+      await _create(formData);
+      await _update(dataToUpdate);
+    } else {
+      await _update(dataToUpdate);
+    }
   };
 
   const onDeleteSociety = () => {
     _delete(idSociety);
   };
+  console.log(dataUser)
   return (
     <>
       <tr>
@@ -193,8 +219,10 @@ const Items = ({ data }) => {
               <img
                 alt="..."
                 src={
+                  enterpriseLogo ? process.env.REACT_APP_SERVER+"/public/"+enterpriseLogo :
                   require("../../../../assets/img/others/society.png").default
                 }
+                style={{width:"3rem",height:"3rem" , objectFit:"cover"}}
               />
             </div>
             <Media>
@@ -218,8 +246,10 @@ const Items = ({ data }) => {
                   alt="..."
                   className="rounded-circle mr-2"
                   src={
+                    locationUser ? process.env.REACT_APP_SERVER+"/public/"+locationUser :
                     require("../../../../assets/img/others/profile.jpg").default
                   }
+                  style={{width:"2rem",height:"2rem" , objectFit:"cover"}}
                 />
               </div>
               <UncontrolledTooltip delay={0} target="tooltip996637554">
@@ -236,15 +266,15 @@ const Items = ({ data }) => {
           <div className="d-flex flex-column">
             <div className="mb-1">
               <i className="fas fa-chart-pie mr-2 text-dark" />
-              {typeProps}
+              {typeProps||"No type"}
             </div>
             <div className="mb-1">
               <i className="far fa-building mr-3 text-primary" />
-              {bankProps}
+              {bankProps || "No bank"}
             </div>
             <div className="mb-1">
               <i className="fas fa-balance-scale mr-2 text-danger" />
-              {lawerFormProps}
+              {lawerFormProps  || "No lawer form"}
             </div>
           </div>
         </td>
@@ -276,6 +306,7 @@ const Items = ({ data }) => {
             id={idUser}
             passDataToParent={getUserData}
             hidePassword={true}
+            onUpdate={true}
           />
         }
         isOpen={isOpenEditUser}
@@ -285,7 +316,7 @@ const Items = ({ data }) => {
       />
 
       <ModalBase
-        content={<Society id={idSociety} passDataToParent={getSocietyData} />}
+        content={<Society id={idSociety} passDataToParent={getSocietyData} onUpdate={true}/>}
         isOpen={isOpenEditSociety}
         toggle={toggleEditSociety}
         onSave={onUpdateSociety}

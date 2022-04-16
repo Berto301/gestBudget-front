@@ -32,17 +32,22 @@ const HeaderDashboard = ({data,passLastActivity}) => {
       const salesValue = sales?.realValue || 0 
       const recipesValue = recipes?.realValue || 0
 
-      return turnover - (salesValue - recipesValue)
+      return turnover + (recipesValue - salesValue)
     }
   }
 
  const progress =()=>{
+   let progress = 0 , currentRendement = 0
    const turnover = _society?.turnover|| sales?.turnover || recipes?.turnover
-   const salesValue = sales?.realValue || 0 
-   const recipesValue = recipes?.realValue || 0 
-   return parseInt(Math.abs(Math.round(((salesValue - recipesValue)/turnover)*100)))
+   const currentTurnover = calculSales()
+   currentRendement = parseInt(Math.abs(Math.round((currentTurnover/turnover)*100)))
+   if(currentRendement > 100){
+     progress = 0
+    }else{
+      progress = 100 - currentRendement
+    }
+   return progress
  }
-
   return (
     <>
       <div className="header bg-gradient-info pb-2 pt-2 pt-md-8">
@@ -60,7 +65,8 @@ const HeaderDashboard = ({data,passLastActivity}) => {
                         </h3>
                       </div>
                       <div className="text-center">
-                        <h5>Spent this month</h5>
+                        <h3>Spent this month</h3>
+                        <h5><i>(Turnover statement in relation to sales and recipes)</i></h5>
                       </div>
                       <div className="progress">
                         <Progress bar color="danger" value={progress()} />
@@ -69,7 +75,7 @@ const HeaderDashboard = ({data,passLastActivity}) => {
                   </Col>
                   <Col xl="6">
                       <div className="d-flex justify-content-center">
-                        <h2><b>Budgets</b></h2>
+                        <h2><b>Budgets </b></h2>
                       </div>
                   </Col>
                   <Col xl="3">

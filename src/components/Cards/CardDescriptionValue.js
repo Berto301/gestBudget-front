@@ -26,8 +26,8 @@ const CardDescriptionValue = (
           </Col>
         </Row>
         <p className="mt-3 mb-0 text-muted text-sm">
-          <span className={`text-${percent >= 50 ? "success" : "danger"} mr-2`}>
-            <i className={`fa fa-arrow-${percent >=50  ? "up" : "down"}`} /> {percent}%
+          <span className={`text-${percent <= 50 ? "success" : "danger"} mr-2`}>
+            <i className={`fa fa-arrow-${percent <=50  ? "up" : "down"}`} /> {percent.toFixed(2)}%
           </span>{" "}
           <span className="text-nowrap">{date}</span>
         </p>

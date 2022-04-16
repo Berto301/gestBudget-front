@@ -8,7 +8,7 @@ import UserInformation from "./subComponents/UserInformations";
 import GroupInfo from "./subComponents/GroupInfo";
 import Profile from "./subComponents/Profile";
 import SocietyInfo from "./subComponents/SocietyInfo";
-import { useUser, useGroup, useSociety } from "../../../hooks";
+import { useUser, useGroup, useSociety  } from "../../../hooks";
 import { socket } from "../../../_helpers/socket";
 
 const Index = (props) => {
@@ -24,6 +24,7 @@ const Index = (props) => {
       await _getById(localStorage.getItem("userId"));
       if (groupId) await _getGroupById(groupId);
       if (societyId) await _getSocietyById(societyId);
+      
     }
     didMount();
 

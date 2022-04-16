@@ -30,7 +30,7 @@ const Index = (props) => {
 
 
   const dataBySales = {
-    labels: ["Real Sales", "Prevision"],
+    labels: ["Real Sales", "Forecast"],
     datasets: [
       {
         data: [ sales?.[0]?.realValue || 0 , sales?.[0]?.sale||0],
@@ -40,7 +40,7 @@ const Index = (props) => {
   };
 
   const dataByRecipes = {
-    labels: ["Real Recipes", "Prevision"],
+    labels: ["Real Recipes", "Forecast"],
     datasets: [
       {
         data:  [recipes?.[0]?.realValue || 0 , recipes?.[0]?.recipe||0],
@@ -74,7 +74,7 @@ const Index = (props) => {
                   <Col xl="6">
                     <div className="col">
                       <h6 className="text-uppercase text-muted ls-1 mb-1 text-center">
-                        Sales par rapport au prevision
+                          Expenses vs. forecast
                       </h6>
                       <div className="chart">
                         <Doughnut
@@ -88,7 +88,7 @@ const Index = (props) => {
                   <Col xl="6">
                     <div className="col">
                       <h6 className="text-uppercase text-muted ls-1 mb-1 text-center">
-                        Recipes par rapport au prevision
+                          Recipes vs. forecast
                       </h6>
                       <div className="chart">
                         <Doughnut

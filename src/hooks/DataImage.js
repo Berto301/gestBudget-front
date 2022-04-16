@@ -9,8 +9,7 @@ const _create = async (data) =>{
 
     const dataImageCreated =  await DataImage.insert(data)
     if(dataImageCreated?.data){
-      debugger
-       const {success,message="",object={}} = dataImageCreated?.data
+       const {success,object={}} = dataImageCreated?.data
        if(success){
          setDataImage(object)
        }
@@ -19,6 +18,8 @@ const _create = async (data) =>{
     }
 
   }
+
+  
   
 
   return {

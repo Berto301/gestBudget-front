@@ -27,9 +27,10 @@ const Header = ({ data }) => {
   const calculPercent = () => {
     let value = 0;
     if (calculTrafics()?.sales || calculTrafics()?.recipes) {
-      const { sales, recipes } = calculTrafics();
-      value = ((sales / recipes) * 100).toFixed(2);
+      const { sales, recipes , total} = calculTrafics();
+      value = (((recipes - sales)/total) * 100).toFixed(2);
     }
+   
     return value;
   };
 

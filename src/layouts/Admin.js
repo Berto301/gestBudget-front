@@ -14,6 +14,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { useUser, useGroup } from "../hooks";
 import "react-toastify/dist/ReactToastify.css";
 
+import { socket } from "../_helpers/socket";
+
 const Admin = (props) => {
   const reduxDispatch = useDispatch();
   let standardNotification = useSelector((state) => state.standardNotification);
@@ -22,6 +24,19 @@ const Admin = (props) => {
   const { _getById, usersConnected } = useUser();
   const { _getById: _getGroupById } = useGroup();
   const [actualRoutes, setActualRoutes] = useState([]);
+  useEffect(()=>{
+    async function didMount() {
+      await _getById(localStorage.getItem("userId"));
+      
+    }
+    didMount();
+
+    socket.on("reload_information", async (groupId) => {
+      if (localStorage.getItem("groupId") === groupId) {
+        didMount();
+      }
+    });
+  },[])
   useEffect(() => {
     if (!usersConnected?.isAdmin) {
       setActualRoutes(societyRoutes);
