@@ -1,0 +1,16 @@
+[build]
+  command = "react-scripts build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "14.15.0"
+
+[build.processing]
+  # Exclude unnecessary files from build
+  # Adjust this according to your project structure
+  exclude = [
+    ".env",
+    ".git/**",
+    "node_modules/**",
+  ]
+
